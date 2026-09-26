@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraksha Setu — Safe Journey, Secure Future</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="otp.css" />
+  <link rel="stylesheet" href="emergency.css" />
+  <link rel="stylesheet" href="fpage.css" />
+</head>
+<body class="splash-body">
+
+  <!-- ============ SPLASH / LANDING SCREEN ============ -->
+  <div class="splash-screen" id="splashScreen">
+
+    <!-- Active emergency banner (if any) -->
+    <div id="splashEmergency" class="splash-emergency" style="display:none;"></div>
+
+    <!-- Hero illustration section -->
+    <div class="splash-hero">
+
+      <!-- Optional: your real poster image -->
+      <img src="hero.jpg"
+           alt="Suraksha Setu — Students, Parents and School connected by safety"
+           class="splash-hero-img"
+           onerror="this.style.display='none'; document.getElementById('heroFallback').style.display='block';" />
+
+      <!-- Fallback illustration if hero.jpg is missing -->
+      <div id="heroFallback" class="splash-hero-fallback" style="display:none;">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#87CEEB"/>
+              <stop offset="100%" stop-color="#E0F2FE"/>
+            </linearGradient>
+            <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#1E40AF"/>
+            </linearGradient>
+            <radialGradient id="sunGrad" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="#FEF3C7"/>
+              <stop offset="60%" stop-color="#FCD34D"/>
+              <stop offset="100%" stop-color="#F59E0B"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Sky -->
+          <rect width="400" height="400" fill="url(#skyGrad)"/>
+
+          <!-- Sun -->
+          <circle cx="200" cy="180" r="60" fill="url(#sunGrad)" opacity="0.9"/>
+
+          <!-- Mountains -->
+          <path d="M0 200 L80 140 L140 200 L220 120 L300 200 L400 160 L400 260 L0 260 Z"
+                fill="#94A3B8" opacity="0.5"/>
+
+          <!-- River -->
+          <path d="M0 260 Q100 240 200 260 T400 260 L400 400 L0 400 Z"
+                fill="url(#riverGrad)" opacity="0.85"/>
+
+          <!-- Left cliff (parents) -->
+          <path d="M0 280 L120 260 L120 320 L0 340 Z" fill="#4ADE80"/>
+          <path d="M0 340 L120 320 L120 400 L0 400 Z" fill="#78350F"/>
+
+          <!-- Right cliff (school) -->
+          <path d="M280 260 L400 280 L400 340 L280 320 Z" fill="#4ADE80"/>
+          <path d="M280 320 L400 340 L400 400 L280 400 Z" fill="#78350F"/>
+
+          <!-- Bridge -->
+          <path d="M120 270 Q200 250 280 270" stroke="#1E293B" stroke-width="6" fill="none"/>
+          <line x1="140" y1="267" x2="140" y2="280" stroke="#1E293B" stroke-width="3"/>
+          <line x1="180" y1="258" x2="180" y2="280" stroke="#1E293B" stroke-width="3"/>
+          <line x1="220" y1="258" x2="220" y2="280" stroke="#1E293B" stroke-width="3"/>
+          <line x1="260" y1="267" x2="260" y2="280" stroke="#1E293B" stroke-width="3"/>
+
+          <!-- Bus -->
+          <rect x="165" y="235" width="70" height="30" rx="4" fill="#FCD34D" stroke="#92400E" stroke-width="1.5"/>
+          <rect x="170" y="240" width="10" height="8" fill="#87CEEB"/>
+          <rect x="185" y="240" width="10" height="8" fill="#87CEEB"/>
+          <rect x="200" y="240" width="10" height="8" fill="#87CEEB"/>
+          <rect x="215" y="240" width="10" height="8" fill="#87CEEB"/>
+          <circle cx="175" cy="267" r="4" fill="#1E293B"/>
+          <circle cx="225" cy="267" r="4" fill="#1E293B"/>
+
+          <!-- School -->
+          <rect x="320" y="235" width="50" height="40" fill="#FED7AA" stroke="#92400E"/>
+          <polygon points="320,235 345,215 370,235" fill="#DC2626"/>
+          <rect x="335" y="255" width="10" height="20" fill="#92400E"/>
+          <rect x="352" y="245" width="10" height="10" fill="#87CEEB"/>
+
+          <!-- Shield + eye icon -->
+          <g transform="translate(200 330)">
+            <path d="M-40 -40 L0 -60 L40 -40 L40 0 Q40 30 0 50 Q-40 30 -40 0 Z"
+                  fill="#1E3A8A" opacity="0.9"/>
+            <ellipse cx="0" cy="0" rx="22" ry="14" fill="#FFFFFF"/>
+            <circle cx="0" cy="0" r="8" fill="#1E3A8A"/>
+            <circle cx="3" cy="-2" r="3" fill="#FFFFFF"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Wave divider -->
+      <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0 50 Q360 10 720 50 T1440 50 L1440 100 L0 100 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <!-- Branding section -->
+    <div class="splash-content">
+      <h1 class="splash-title">
+        Suraksha <span class="title-accent">Setu</span>
+      </h1>
+      <p class="splash-tagline">
+        Safe Journey <span class="tagline-divider">|</span> Secure Future
+      </p>
+      <p class="splash-desc">
+        Connecting Students, Parents &amp; School for Safer Journeys
+      </p>
+
+      <button type="button" class="splash-get-started" id="getStartedBtn">
+        Get Started <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <div class="splash-footer">
+        <div class="splash-features">
+          <div class="splash-feature">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Live Tracking</span>
+          </div>
+          <div class="splash-feature">
+            <i class="fa-solid fa-tower-broadcast"></i>
+            <span>Emergency Alerts</span>
+          </div>
+          <div class="splash-feature">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>OTP Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LOGIN SCREEN (hidden initially) ============ -->
+  <div class="login-screen-wrap" id="loginScreen" style="display:none;">
+
+    <div id="emergencyBanner" class="emergency-top-banner" style="display:none;"></div>
+
+    <div class="login-body">
+      <div class="login-wrapper">
+
+        <div class="login-brand">
+          <div class="logo-shield">
+            <i class="fa-solid fa-shield-halved"></i>
+            <i class="fa-solid fa-bus logo-bus"></i>
+          </div>
+          <h1>SURAKSHA SETU</h1>
+          <p class="tagline">Connecting Students, Parents &amp; School for Safer Journeys</p>
+
+          <ul class="brand-points">
+            <li><i class="fa-solid fa-mobile-screen"></i> OTP-verified login</li>
+            <li><i class="fa-solid fa-location-dot"></i> Live bus tracking</li>
+            <li><i class="fa-solid fa-user-check"></i> Boarding &amp; drop alerts</li>
+            <li><i class="fa-solid fa-tower-broadcast"></i> Hospital &amp; Police alerts</li>
+          </ul>
+        </div>
+
+        <div class="login-card">
+          <button type="button" class="back-to-splash" id="backToSplashBtn">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+
+          <h2>Welcome Back</h2>
+          <p class="subtitle">Select your role and login</p>
+
+          <div class="role-selector" id="roleSelector">
+            <button type="button" class="role-btn active" data-role="parent">
+              <i class="fa-solid fa-user-group"></i><span>Parent</span>
+            </button>
+            <button type="button" class="role-btn" data-role="admin">
+              <i class="fa-solid fa-user-tie"></i><span>Admin</span>
+            </button>
+            <button type="button" class="role-btn" data-role="driver">
+              <i class="fa-solid fa-id-card"></i><span>Driver</span>
+            </button>
+          </div>
+
+          <form id="loginForm" autocomplete="off">
+            <div class="form-group">
+              <label for="userId"><i class="fa-solid fa-user"></i> User ID</label>
+              <input type="text" id="userId" placeholder="Enter your user ID" required />
+            </div>
+
+            <div class="form-group">
+              <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+              <div class="password-wrap">
+                <input type="password" id="password" placeholder="Enter your password" required />
+                <button type="button" id="togglePassword" class="toggle-pass" aria-label="Show password">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="remember">
+                <input type="checkbox" id="rememberMe" />
+                <span>Remember me</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-login">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+
+            <p class="login-error" id="loginError"></p>
+          </form>
+
+          <div class="demo-hint">
+            <p><strong>Demo Credentials</strong></p>
+            <p>Parent: <code>parent001</code> / <code>parent123</code></p>
+            <p>Admin: <code>admin001</code> / <code>admin123</code></p>
+            <p>Driver: <code>driver001</code> / <code>driver123</code></p>
+            <p style="margin-top:6px;font-size:0.72rem;">
+              <i class="fa-solid fa-mobile-screen"></i>
+              OTP appears on-screen after password.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OTP MODAL (shared) ============ -->
+  <div class="otp-overlay" id="otpOverlay">
+    <div class="otp-modal">
+      <div class="otp-icon">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+      </div>
+      <h3>Verify OTP</h3>
+      <p class="otp-sub">
+        We sent a 6-digit code to<br>
+        <strong id="otpMobileText">+91-XXXXXXXXXX</strong>
+      </p>
+
+      <div class="otp-inputs" id="otpInputs">
+        <input type="text" maxlength="1" inputmode="numeric" data-idx="0">
+        <input type="text" maxlength="1" inputmode="numeric" data-idx="1">
+        <input type="text" maxlength="1" inputmode="numeric" data-idx="2">
+        <input type="text" maxlength="1" inputmode="numeric" data-idx="3">
+        <input type="text" maxlength="1" inputmode="numeric" data-idx="4">
+        <input type="text" maxlength="1" inputmode="numeric" data-idx="5">
+      </div>
+
+      <div class="otp-demo-hint">
+        <strong><i class="fa-solid fa-flask"></i> Demo Mode</strong>
+        Since there is no SMS gateway, the OTP is shown here:<br>
+        <code id="otpDemoCode">------</code>
+      </div>
+
+      <p class="otp-error" id="otpError"></p>
+
+      <div class="otp-actions">
+        <button type="button" class="otp-btn otp-btn-ghost" id="otpCancelBtn">
+          <i class="fa-solid fa-xmark"></i> Cancel
+        </button>
+        <button type="button" class="otp-btn otp-btn-primary" id="otpVerifyBtn">
+          <i class="fa-solid fa-circle-check"></i> Verify
+        </button>
+      </div>
+
+      <p class="otp-foot">
+        Didn't receive? <a id="otpResendLink" class="disabled">Resend OTP</a>
+        <span id="otpTimer"></span>
+      </p>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="storage.js"></script>
+  <script src="data.js"></script>
+  <script src="utils.js"></script>
+  <script src="otp.js"></script>
+  <script src="notifications.js"></script>
+  <script src="emergency.js"></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

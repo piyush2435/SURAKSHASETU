@@ -1,0 +1,81 @@
+/* ============================================
+   SURAKSHA SETU — Driver Dashboard
+   ============================================ */
+
+.driver-header-card {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff; border-radius: var(--radius); padding: 22px 24px;
+  margin-bottom: 22px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: var(--shadow-lg);
+}
+.driver-header-card h2 { font-size: 1.3rem; margin-bottom: 4px; }
+.driver-header-card p { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+
+.bus-plate {
+  background: var(--accent); color: #1a1a1a; padding: 10px 20px;
+  border-radius: 10px; font-weight: 800; font-size: 1.1rem;
+  letter-spacing: 1px; box-shadow: 0 4px 12px rgba(245,158,11,0.4);
+}
+
+.student-list {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.student-board-card {
+  background: var(--surface); border-radius: var(--radius); padding: 16px;
+  box-shadow: var(--shadow); display: flex; gap: 14px; align-items: center;
+  border-left: 4px solid var(--border); transition: transform 0.2s;
+}
+.student-board-card:hover { transform: translateY(-2px); }
+.student-board-card.waiting { border-left-color: var(--text-light); }
+.student-board-card.boarded { border-left-color: var(--success); background: #f0fdf4; }
+.student-board-card.dropped { border-left-color: var(--info); background: #f0f9ff; opacity: 0.8; }
+
+.sbc-photo {
+  width: 56px; height: 56px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--border); flex-shrink: 0;
+}
+.sbc-info { flex: 1; min-width: 0; }
+.sbc-info h4 { font-size: 0.95rem; margin-bottom: 2px; }
+.sbc-info .sbc-id { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px; }
+.sbc-info .sbc-time { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+.sbc-actions { display: flex; flex-direction: column; gap: 6px; }
+
+.emergency-btn {
+  width: 100%; padding: 18px;
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  color: #fff; border-radius: var(--radius); font-size: 1.05rem;
+  font-weight: 700; display: flex; align-items: center; justify-content: center;
+  gap: 10px; box-shadow: 0 8px 24px rgba(234,88,12,0.4);
+  transition: all 0.2s; margin-bottom: 22px;
+  border: none; cursor: pointer;
+}
+.emergency-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(234,88,12,0.5); }
+.emergency-btn:active { transform: translateY(0); }
+
+.location-panel {
+  background: var(--surface); border-radius: var(--radius); padding: 20px;
+  box-shadow: var(--shadow); margin-bottom: 22px;
+}
+.coord-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.location-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.sim-status {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; font-weight: 600; padding: 6px 12px;
+  border-radius: 999px; background: var(--bg); color: var(--text-muted);
+}
+.sim-status.active { background: #dcfce7; color: #166534; }
+.sim-status .pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: currentColor;
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+@media (max-width: 640px) {
+  .coord-grid { grid-template-columns: 1fr; }
+  .student-list { grid-template-columns: 1fr; }
+  .driver-header-card { flex-direction: column; text-align: center; }
+}

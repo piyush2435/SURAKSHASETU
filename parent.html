@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent Dashboard — Suraksha Setu</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="parent.css" />
+  <link rel="stylesheet" href="emergency.css" />
+</head>
+<body>
+
+<div class="dashboard-body">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-shield-halved"></i><i class="fa-solid fa-bus"></i>
+      </div>
+      <div><h2>SURAKSHA SETU</h2><small>Parent Portal</small></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><button type="button" class="side-link active" data-section="sec-dashboard">
+        <i class="fa-solid fa-gauge-high"></i> Dashboard</button></li>
+      <li><button type="button" class="side-link" data-section="sec-map">
+        <i class="fa-solid fa-map-location-dot"></i> Live Map</button></li>
+      <li><button type="button" class="side-link" data-section="sec-notifications">
+        <i class="fa-solid fa-bell"></i> Notifications</button></li>
+      <li><button type="button" class="side-link" data-section="sec-history">
+        <i class="fa-solid fa-clock-rotate-left"></i> Journey History</button></li>
+    </ul>
+    <div class="sidebar-user">
+      <div class="user-name" id="sidebarUserName">Parent</div>
+      <div class="user-role">Parent</div>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop"></div>
+
+  <div class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button type="button" class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div>
+          <h1>Parent Dashboard</h1>
+          <div class="page-sub">Track your child's safety in real time</div>
+        </div>
+      </div>
+      <div class="topbar-right" id="topbarRight">
+        <button type="button" class="topbar-icon-btn">
+          <i class="fa-solid fa-bell"></i>
+          <span class="notif-dot" id="notifDot" style="display:none;"></span>
+        </button>
+        <button type="button" class="btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- Emergency alert banner for parent -->
+      <div id="parentEmergencyBanner" style="display:none;"></div>
+
+      <section class="section active" id="sec-dashboard">
+        <div class="student-profile-card">
+          <img id="stuPhoto" class="student-photo-lg" src="" alt="Student">
+          <div class="student-info-block">
+            <h2 id="stuName">—</h2>
+            <div class="stu-id" id="stuId">—</div>
+            <div class="student-meta">
+              <div><i class="fa-solid fa-graduation-cap"></i><span id="stuClass">—</span></div>
+              <div><i class="fa-solid fa-location-dot"></i><span id="stuAddress">—</span></div>
+              <div><i class="fa-solid fa-phone"></i><span id="stuMobile">—</span></div>
+              <div><i class="fa-solid fa-bus"></i><span id="stuBus">—</span></div>
+              <div><i class="fa-solid fa-id-card"></i><span id="stuDriver">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bus-status-card">
+          <h3><i class="fa-solid fa-bus"></i> Bus Status</h3>
+          <div class="status-main waiting" id="busStatusMain">WAITING FOR BUS</div>
+          <div class="status-details">
+            <div class="status-detail-item">
+              <div class="label">Bus No</div>
+              <div class="value" id="busStatusBusNo">—</div>
+            </div>
+            <div class="status-detail-item">
+              <div class="label">Last Updated</div>
+              <div class="value" id="busStatusUpdated">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="student-status-banner waiting" id="studentStatusBanner">
+          <i class="fa-solid fa-clock"></i>
+          <div class="banner-text">Loading student status...</div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-map-location-dot"></i> Live Route Preview</h3>
+            <button type="button" class="btn btn-outline btn-sm" data-jump="sec-map">
+              Open full map <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+          <div id="parentMiniMap" class="map-box-sm"></div>
+          <div class="map-legend">
+            <span><span class="dot" style="background:#16a34a;"></span> Picked</span>
+            <span><span class="dot" style="background:#94a3b8;"></span> Pending stop</span>
+            <span><span class="dot" style="background:#ea580c;"></span> Bus</span>
+            <span><span class="dot" style="background:#1e3a8a;"></span> School</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sec-map">
+        <h2 class="section-title">Live Bus Map</h2>
+        <p class="section-desc">Simulated tracking — real GPS requires a backend.</p>
+        <div class="card">
+          <div id="parentMap" class="map-box-lg"></div>
+          <div class="map-legend">
+            <span><span class="dot" style="background:#16a34a;"></span> Picked stop</span>
+            <span><span class="dot" style="background:#94a3b8;"></span> Not yet reached</span>
+            <span><span class="dot" style="background:#ea580c;"></span> Live bus</span>
+            <span><span class="dot" style="background:#1e3a8a;"></span> School</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sec-notifications">
+        <h2 class="section-title">Notifications</h2>
+        <p class="section-desc">Recent alerts about your child's journey.</p>
+        <div class="card"><div class="notif-list" id="notifList"></div></div>
+      </section>
+
+      <section class="section" id="sec-history">
+        <h2 class="section-title">Journey History</h2>
+        <p class="section-desc">Past journeys — flawless, delayed, or with problems.</p>
+
+        <div class="journey-filters">
+          <button type="button" class="jf-btn active" data-filter="all">All</button>
+          <button type="button" class="jf-btn" data-filter="flawless">✅ Flawless</button>
+          <button type="button" class="jf-btn" data-filter="delayed">⏱ Delayed</button>
+          <button type="button" class="jf-btn" data-filter="problem">⚠ With Problem</button>
+        </div>
+
+        <div id="historyList"></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="storage.js"></script>
+<script src="data.js"></script>
+<script src="utils.js"></script>
+<script src="auth.js"></script>
+<script src="notifications.js"></script>
+<script src="reports.js"></script>
+<script src="emergency.js"></script>
+<script src="map.js"></script>
+<script src="simulation.js"></script>
+<script src="parent.js"></script>
+</body>
+</html>

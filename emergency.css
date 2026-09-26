@@ -1,0 +1,460 @@
+/* ============================================
+   SURAKSHA SETU — Emergency Services Styles
+   ============================================ */
+
+/* ---------- Top banner on login page ---------- */
+.emergency-top-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
+  color: #fff;
+  padding: 14px 20px;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(185,28,28,0.5);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: emgSlideDown 0.4s ease;
+  border-bottom: 3px solid #fca5a5;
+}
+@keyframes emgSlideDown {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+.emergency-top-banner i.banner-icon {
+  font-size: 1.8rem;
+  color: #fecaca;
+  animation: emgFlash 1s infinite;
+  flex-shrink: 0;
+}
+@keyframes emgFlash {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.1); }
+}
+
+.emergency-top-banner .banner-body {
+  flex: 1;
+  min-width: 0;
+}
+.emergency-top-banner .banner-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+.emergency-top-banner .banner-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #fecaca;
+}
+.emergency-top-banner .banner-count {
+  background: #fff;
+  color: #b91c1c;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.emergency-top-banner .banner-close {
+  background: transparent;
+  color: #fecaca;
+  border: 1.5px solid #fecaca;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.emergency-top-banner .banner-close:hover {
+  background: #fecaca; color: #7f1d1d;
+}
+
+/* Push login content down when banner is present */
+body.has-emergency-banner .login-wrapper {
+  margin-top: 90px;
+}
+
+/* Parent emergency banner */
+.parent-emg-banner {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-left: 6px solid #dc2626;
+  border-radius: var(--radius);
+  margin-bottom: 18px;
+  color: #7f1d1d;
+  animation: emgBlink 1.5s infinite;
+}
+@keyframes emgBlink {
+  0%, 100% { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+  50%      { background: linear-gradient(135deg, #fecaca, #fca5a5); }
+}
+.parent-emg-banner i {
+  font-size: 1.8rem; color: #dc2626; flex-shrink: 0;
+}
+.parent-emg-banner .emg-banner-body { flex: 1; }
+.parent-emg-banner .emg-banner-title {
+  font-weight: 800; font-size: 1rem; margin-bottom: 4px; letter-spacing: 0.3px;
+}
+.parent-emg-banner .emg-banner-text {
+  font-size: 0.88rem; line-height: 1.55;
+}
+.parent-emg-banner .emg-banner-time {
+  font-size: 0.76rem; margin-top: 6px; opacity: 0.85;
+}
+
+/* ---------- Driver emergency button ---------- */
+.emergency-raise-btn {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(185,28,28,0.5);
+  transition: all 0.2s;
+  margin-bottom: 12px;
+  border: 3px solid #fecaca;
+  cursor: pointer;
+  animation: emergencyPulse 2s infinite;
+}
+@keyframes emergencyPulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(185,28,28,0.5); }
+  50%      { box-shadow: 0 10px 40px rgba(185,28,28,0.85); }
+}
+.emergency-raise-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+}
+.emergency-raise-btn i { font-size: 1.4rem; }
+
+/* ---------- Emergency modal ---------- */
+.emg-modal { max-width: 560px !important; }
+
+.emg-modal .modal-header {
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
+  color: #fff;
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.emg-modal .modal-header h3 { color: #fff; }
+.emg-modal .modal-header h3 i { color: #fecaca; }
+.emg-modal .modal-close { color: #fecaca; }
+.emg-modal .modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+.emg-warning {
+  background: #fef2f2;
+  border: 2px dashed #dc2626;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  font-size: 0.85rem;
+  color: #991b1b;
+  line-height: 1.55;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.emg-warning i { color: #dc2626; font-size: 1.1rem; margin-top: 2px; }
+
+.emg-preview {
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.emg-preview-title {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.emg-preview-list {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.emg-preview-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85rem;
+}
+.emg-preview-item i {
+  width: 22px; text-align: center;
+}
+.emg-preview-item i.fa-hospital { color: #dc2626; }
+.emg-preview-item i.fa-shield-halved { color: #1e3a8a; }
+.emg-preview-item .emg-dist {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* ---------- Emergency alert cards (admin) ---------- */
+.emg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.emg-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow-lg);
+  border-left: 6px solid #b91c1c;
+  position: relative;
+  overflow: hidden;
+}
+.emg-card.resolved {
+  border-left-color: var(--success);
+  opacity: 0.88;
+}
+.emg-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle, rgba(185,28,28,0.15), transparent 70%);
+  border-radius: 50%;
+}
+
+.emg-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.emg-card-head h4 {
+  font-size: 1rem;
+  color: #7f1d1d;
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+.emg-card-head h4 i { color: #dc2626; font-size: 1.1rem; }
+.emg-card.resolved .emg-card-head h4 { color: #166534; }
+.emg-card.resolved .emg-card-head h4 i { color: var(--success); }
+
+.emg-card-time {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex; gap: 8px; align-items: center;
+}
+.emg-card-time i { color: #dc2626; }
+
+.emg-card-message {
+  background: #fef2f2;
+  border-left: 3px solid #dc2626;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  color: #7f1d1d;
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+
+.emg-card-location {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-family: monospace;
+}
+
+.emg-services {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.emg-service-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  border-left: 3px solid var(--border);
+}
+.emg-service-row.hospital { border-left-color: #dc2626; }
+.emg-service-row.police   { border-left-color: #1e3a8a; }
+
+.emg-service-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 0.85rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+.emg-service-icon.hospital { background: #dc2626; }
+.emg-service-icon.police   { background: #1e3a8a; }
+
+.emg-service-info { flex: 1; min-width: 0; }
+.emg-service-info strong {
+  font-size: 0.85rem; display: block;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.emg-service-info span {
+  font-size: 0.72rem; color: var(--text-muted);
+}
+
+.emg-card-actions {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+
+/* ---------- Call service buttons ---------- */
+.call-service-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+}
+.call-service-btn:hover {
+  border-color: #dc2626;
+  background: #fef2f2;
+  transform: translateY(-2px);
+}
+.call-service-btn.police:hover {
+  border-color: #1e3a8a;
+  background: #eff6ff;
+}
+
+.call-service-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.call-service-icon.hospital { background: #dc2626; }
+.call-service-icon.police   { background: #1e3a8a; }
+
+.call-service-info { flex: 1; min-width: 0; }
+.call-service-info strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+.call-service-info span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.call-service-number {
+  font-weight: 800;
+  color: #dc2626;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.call-service-btn.police .call-service-number {
+  color: #1e3a8a;
+}
+
+/* ---------- Stats card ---------- */
+.stat-card.emergency { border-left-color: #b91c1c; }
+.stat-card.emergency .stat-icon {
+  background: #fee2e2; color: #b91c1c;
+}
+
+/* ---------- Admin emergency toolbar ---------- */
+.emg-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.emg-filter-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.emg-filter-btns .ef-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.emg-filter-btns .ef-btn:hover {
+  border-color: #dc2626; color: #dc2626;
+}
+.emg-filter-btns .ef-btn.active {
+  background: #dc2626; color: #fff; border-color: #dc2626;
+}
+
+/* ---------- Services directory ---------- */
+.services-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #475569;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+
+.services-dir-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface-2);
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.services-dir-icon {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.services-dir-icon.hospital { background: #dc2626; }
+.services-dir-icon.police   { background: #1e3a8a; }
+
+.services-dir-info { flex: 1; min-width: 0; }
+.services-dir-info strong { display: block; font-size: 0.9rem; }
+.services-dir-info span {
+  font-size: 0.75rem; color: var(--text-muted);
+  display: block; margin-top: 2px;
+}
+
+@media (max-width: 640px) {
+  .emg-grid { grid-template-columns: 1fr; }
+  .emg-service-info strong { font-size: 0.8rem; }
+  .emergency-top-banner { padding: 12px 14px; gap: 10px; }
+  .emergency-top-banner .banner-title { font-size: 0.82rem; }
+  .emergency-top-banner .banner-text { font-size: 0.75rem; }
+  .emergency-top-banner .banner-count { display: none; }
+  body.has-emergency-banner .login-wrapper { margin-top: 110px; }
+}

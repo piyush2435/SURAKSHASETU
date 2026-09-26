@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Dashboard — Suraksha Setu</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="driver.css" />
+  <link rel="stylesheet" href="emergency.css" />
+</head>
+<body>
+
+<div class="dashboard-body">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-shield-halved"></i><i class="fa-solid fa-bus"></i></div>
+      <div><h2>SURAKSHA SETU</h2><small>Driver Portal</small></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><button type="button" class="side-link active" data-section="sec-students">
+        <i class="fa-solid fa-users"></i> My Students</button></li>
+      <li><button type="button" class="side-link" data-section="sec-map">
+        <i class="fa-solid fa-map-location-dot"></i> Live Route Map</button></li>
+      <li><button type="button" class="side-link" data-section="sec-location">
+        <i class="fa-solid fa-location-crosshairs"></i> Bus Location</button></li>
+    </ul>
+    <div class="sidebar-user">
+      <div class="user-name" id="sidebarUserName">Driver</div>
+      <div class="user-role">Driver</div>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop"></div>
+
+  <div class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button type="button" class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div>
+          <h1>Driver Dashboard</h1>
+          <div class="page-sub">Manage boarding, dropping &amp; location</div>
+        </div>
+      </div>
+      <div class="topbar-right" id="topbarRight">
+        <button type="button" class="btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="driver-header-card">
+        <div>
+          <h2 id="driverName">Driver</h2>
+          <p>Bus: <strong id="driverBus">—</strong> · <span id="driverRoute">Route</span></p>
+        </div>
+        <div class="bus-plate" id="busPlate">BUS-01</div>
+      </div>
+
+      <button type="button" class="emergency-raise-btn" id="raiseEmergencyBtn">
+        <i class="fa-solid fa-tower-broadcast"></i>
+        RAISE EMERGENCY — Hospital / Police
+      </button>
+
+      <button type="button" class="emergency-btn" id="reportProblemBtn">
+        <i class="fa-solid fa-triangle-exclamation"></i> Report Problem (non-urgent)
+      </button>
+
+      <section class="section active" id="sec-students">
+        <h2 class="section-title">Today's Journey</h2>
+        <p class="section-desc">Mark students as boarded or dropped.</p>
+        <div class="student-list" id="driverStudentList"></div>
+      </section>
+
+      <section class="section" id="sec-map">
+        <h2 class="section-title">Live Route Map</h2>
+        <p class="section-desc">Green = picked. Grey = pending. Orange = your bus.</p>
+        <div class="card">
+          <div id="driverMap" class="map-box-lg"></div>
+          <div class="map-legend">
+            <span><span class="dot" style="background:#16a34a;"></span> Picked</span>
+            <span><span class="dot" style="background:#94a3b8;"></span> Not yet reached</span>
+            <span><span class="dot" style="background:#ea580c;"></span> My bus</span>
+            <span><span class="dot" style="background:#1e3a8a;"></span> School</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sec-location">
+        <h2 class="section-title">Update Bus Location</h2>
+        <p class="section-desc">Prototype: simulated movement only.</p>
+        <div class="location-panel">
+          <div class="coord-grid">
+            <div class="form-group"><label>Latitude</label>
+              <input type="number" step="0.000001" id="locLat"></div>
+            <div class="form-group"><label>Longitude</label>
+              <input type="number" step="0.000001" id="locLng"></div>
+          </div>
+          <p class="text-muted" style="margin-bottom:14px;font-size:0.85rem;">
+            Current Bus Location: <strong id="currentLocationText">—</strong>
+          </p>
+          <div class="location-actions">
+            <button type="button" class="btn btn-primary" id="updateLocBtn">
+              <i class="fa-solid fa-location-dot"></i> Update Location</button>
+            <button type="button" class="btn btn-success" id="startSimBtn">
+              <i class="fa-solid fa-play"></i> Start Journey</button>
+            <button type="button" class="btn btn-danger" id="stopSimBtn">
+              <i class="fa-solid fa-stop"></i> Stop Journey</button>
+          </div>
+          <div style="margin-top:14px;">
+            <span class="sim-status" id="simStatus">Journey idle</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- Non-urgent Report Modal -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-triangle-exclamation" style="color:var(--danger);"></i> Report a Problem</h3>
+      <button type="button" class="modal-close" id="reportModalClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Problem Type</label>
+        <select id="reportType">
+          <option>Traffic</option><option>Mechanical Problem</option>
+          <option>Road Block</option><option>Bus Breakdown</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="reportMessage" placeholder="Describe what happened..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Current Location</label>
+        <p class="text-muted" id="reportLocationText">—</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" id="reportCancelBtn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="reportSubmitBtn">
+        <i class="fa-solid fa-paper-plane"></i> Submit Report</button>
+    </div>
+  </div>
+</div>
+
+<!-- EMERGENCY Modal -->
+<div class="modal-overlay" id="emergencyModal">
+  <div class="modal emg-modal">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-tower-broadcast"></i> Raise Emergency</h3>
+      <button type="button" class="modal-close" id="emergencyModalClose">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="emg-warning">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div>
+          <strong>This will notify emergency services.</strong><br>
+          Nearest hospital and/or police will be alerted. Parents of students on this bus and the school admin will also be notified.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Emergency Type</label>
+        <select id="emgType">
+          <option>Accident</option>
+          <option>Medical Emergency</option>
+          <option>Fire</option>
+          <option>Bus Breakdown</option>
+          <option>Road Block</option>
+          <option>Suspicious Activity</option>
+          <option>Theft</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Details</label>
+        <textarea id="emgMessage" placeholder="Describe the emergency..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Current Location</label>
+        <p class="text-muted" id="emgLocationText">—</p>
+      </div>
+
+      <div class="emg-preview" id="emgPreview">
+        <div class="emg-preview-title">Will be notified</div>
+        <div class="emg-preview-list" id="emgPreviewList"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" id="emgCancelBtn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="emgSendBtn">
+        <i class="fa-solid fa-tower-broadcast"></i> Send Emergency Alert
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Call Service Modal (opens after emergency is sent) -->
+<div class="modal-overlay" id="callServiceModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-header" style="background:linear-gradient(135deg,#dc2626,#7f1d1d);color:#fff;border-radius:14px 14px 0 0;">
+      <h3 style="color:#fff;"><i class="fa-solid fa-phone-volume"></i> Call Emergency Services</h3>
+      <button type="button" class="modal-close" id="callModalClose" style="color:#fecaca;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:16px;font-size:0.9rem;color:#7f1d1d;font-weight:600;">
+        <i class="fa-solid fa-circle-check"></i> Alert sent successfully. You can now call directly.
+      </p>
+      <div id="callServicesList"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="storage.js"></script>
+<script src="data.js"></script>
+<script src="utils.js"></script>
+<script src="auth.js"></script>
+<script src="notifications.js"></script>
+<script src="reports.js"></script>
+<script src="emergency.js"></script>
+<script src="map.js"></script>
+<script src="simulation.js"></script>
+<script src="driver.js"></script>
+</body>
+</html>
