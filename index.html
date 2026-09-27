@@ -20,378 +20,950 @@
 </head>
 <body class="splash-body">
 
-  <!-- ============ SPLASH SCREEN ============ -->
   <div class="splash-screen" id="splashScreen">
 
-    <!-- Emergency banner (only shows if there is an active emergency) -->
     <div id="splashEmergency" class="splash-emergency" style="display:none;"></div>
 
-    <!-- ========== HERO ILLUSTRATION (pure CSS + SVG) ========== -->
+    <!-- ========== HERO ILLUSTRATION ========== -->
     <div class="splash-hero">
 
-      <!-- Optional: if hero.jpg exists in the same folder, it shows instead -->
       <img src="hero.jpg" alt="" class="splash-hero-img"
            onerror="this.remove();" />
 
-      <!-- Fallback / default illustration (SVG) -->
       <div class="splash-hero-art">
-        <svg viewBox="0 0 850 700" xmlns="http://www.w3.org/2000/svg" class="hero-svg" preserveAspectRatio="xMidYMid meet">
+
+        <!-- ============================================================
+             DETAILED SVG ILLUSTRATION
+             ============================================================ -->
+        <svg viewBox="0 0 900 750" xmlns="http://www.w3.org/2000/svg"
+             class="hero-svg" preserveAspectRatio="xMidYMid meet">
 
           <defs>
-            <!-- Sky gradient -->
+            <!-- SKY GRADIENT -->
             <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7CC7F2"/>
-              <stop offset="45%" stop-color="#B4DCF5"/>
-              <stop offset="100%" stop-color="#E8F4FC"/>
+              <stop offset="0%"   stop-color="#5BB4E8"/>
+              <stop offset="25%"  stop-color="#7FC4EC"/>
+              <stop offset="55%"  stop-color="#B8DCF0"/>
+              <stop offset="85%"  stop-color="#E2EFF7"/>
+              <stop offset="100%" stop-color="#F0F7FC"/>
             </linearGradient>
 
-            <!-- Sun glow -->
+            <!-- SUN GLOW (radial) -->
             <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0%" stop-color="#FFF8DC"/>
-              <stop offset="35%" stop-color="#FCE38A"/>
-              <stop offset="70%" stop-color="#F8C860" stop-opacity="0.7"/>
+              <stop offset="0%"   stop-color="#FFFDF0" stop-opacity="1"/>
+              <stop offset="20%"  stop-color="#FFEFB8" stop-opacity="0.95"/>
+              <stop offset="45%"  stop-color="#FCDE84" stop-opacity="0.7"/>
+              <stop offset="70%"  stop-color="#F8C860" stop-opacity="0.35"/>
               <stop offset="100%" stop-color="#F8C860" stop-opacity="0"/>
             </radialGradient>
 
-            <!-- River gradient -->
+            <!-- SUN CORE -->
+            <radialGradient id="sunCore" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%"   stop-color="#FFFFFF"/>
+              <stop offset="60%"  stop-color="#FFF6CC"/>
+              <stop offset="100%" stop-color="#FFE9A8"/>
+            </radialGradient>
+
+            <!-- RIVER GRADIENT -->
             <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#5BA9DC"/>
-              <stop offset="50%" stop-color="#4A90C8"/>
-              <stop offset="100%" stop-color="#357ABD"/>
+              <stop offset="0%"   stop-color="#5BA9DC"/>
+              <stop offset="30%"  stop-color="#4A90C8"/>
+              <stop offset="70%"  stop-color="#3A7BB5"/>
+              <stop offset="100%" stop-color="#2A5D95"/>
             </linearGradient>
 
-            <!-- Cliff gradient -->
+            <!-- CLIFF ROCK -->
             <linearGradient id="cliffGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#8B6F47"/>
-              <stop offset="100%" stop-color="#5D4530"/>
+              <stop offset="0%"   stop-color="#A8865E"/>
+              <stop offset="40%"  stop-color="#8B6F47"/>
+              <stop offset="100%" stop-color="#4A3520"/>
             </linearGradient>
 
-            <!-- Green top gradient -->
+            <!-- CLIFF LEFT SHADOW -->
+            <linearGradient id="cliffShadeL" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%"   stop-color="#000000" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+            </linearGradient>
+
+            <!-- CLIFF RIGHT SHADOW -->
+            <linearGradient id="cliffShadeR" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%"   stop-color="#000000" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+            </linearGradient>
+
+            <!-- GRASS -->
             <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7CC576"/>
-              <stop offset="100%" stop-color="#5AA64F"/>
+              <stop offset="0%"   stop-color="#8ED078"/>
+              <stop offset="50%"  stop-color="#6ABF57"/>
+              <stop offset="100%" stop-color="#4A9E3B"/>
             </linearGradient>
 
-            <!-- Shield gradient -->
+            <!-- MOUNTAIN FAR -->
+            <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#9FB8D0"/>
+              <stop offset="100%" stop-color="#7B9BB8"/>
+            </linearGradient>
+
+            <!-- MOUNTAIN NEAR -->
+            <linearGradient id="mtnNear" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#7A98B5"/>
+              <stop offset="100%" stop-color="#5A7A98"/>
+            </linearGradient>
+
+            <!-- SHIELD -->
             <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#1E88E5"/>
+              <stop offset="0%"   stop-color="#4FC3F7"/>
+              <stop offset="45%"  stop-color="#2196F3"/>
               <stop offset="100%" stop-color="#0D47A1"/>
             </linearGradient>
 
-            <!-- Hand gradient -->
+            <!-- SHIELD INNER HIGHLIGHT -->
+            <linearGradient id="shieldHighlight" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+            </linearGradient>
+
+            <!-- HANDS GRADIENT -->
             <linearGradient id="handGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4BA3E3"/>
-              <stop offset="100%" stop-color="#1565C0"/>
+              <stop offset="0%"   stop-color="#5BB0E8"/>
+              <stop offset="45%"  stop-color="#3182CE"/>
+              <stop offset="100%" stop-color="#0D47A1"/>
             </linearGradient>
 
-            <!-- School -->
+            <!-- HANDS HIGHLIGHT -->
+            <linearGradient id="handHi" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+            </linearGradient>
+
+            <!-- SCHOOL WALL -->
             <linearGradient id="schoolGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FFF4E0"/>
-              <stop offset="100%" stop-color="#F5E1C0"/>
+              <stop offset="0%"   stop-color="#FFFBF0"/>
+              <stop offset="100%" stop-color="#F0DFC0"/>
             </linearGradient>
 
-            <!-- Bus yellow -->
+            <!-- SCHOOL ROOF -->
+            <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#E85A48"/>
+              <stop offset="100%" stop-color="#B33D2C"/>
+            </linearGradient>
+
+            <!-- BUS -->
             <linearGradient id="busGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FFD93D"/>
-              <stop offset="100%" stop-color="#F5B800"/>
+              <stop offset="0%"   stop-color="#FFE24A"/>
+              <stop offset="40%"  stop-color="#FFD93D"/>
+              <stop offset="100%" stop-color="#E8A800"/>
             </linearGradient>
 
-            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur"/>
+            <!-- BUS TOP HIGHLIGHT -->
+            <linearGradient id="busHi" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.6"/>
+              <stop offset="40%"  stop-color="#FFFFFF" stop-opacity="0"/>
+            </linearGradient>
+
+            <!-- GLOW FILTER -->
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8" result="blur"/>
               <feMerge>
                 <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
+
+            <!-- SOFT BLUR FOR DISTANT MOUNTAINS -->
+            <filter id="soften">
+              <feGaussianBlur stdDeviation="0.8"/>
+            </filter>
           </defs>
 
-          <!-- ===== SKY ===== -->
-          <rect width="850" height="700" fill="url(#skyGrad)"/>
+          <!-- =====================================================
+               1. SKY BACKGROUND
+          ===================================================== -->
+          <rect width="900" height="750" fill="url(#skyGrad)"/>
 
-          <!-- ===== SUN with glow ===== -->
-          <circle cx="425" cy="230" r="180" fill="url(#sunGlow)"/>
-          <circle cx="425" cy="230" r="55" fill="#FFE9A8" opacity="0.9"/>
-          <circle cx="425" cy="230" r="38" fill="#FFF4D0"/>
+          <!-- =====================================================
+               2. SUN + GLOW
+          ===================================================== -->
+          <circle cx="450" cy="255" r="240" fill="url(#sunGlow)"/>
+          <circle cx="450" cy="255" r="90"  fill="url(#sunGlow)" opacity="0.9"/>
+          <circle cx="450" cy="255" r="55"  fill="url(#sunCore)"/>
+          <circle cx="450" cy="255" r="42"  fill="#FFFCF0"/>
 
-          <!-- ===== CLOUDS ===== -->
-          <g opacity="0.85" fill="#FFFFFF">
-            <ellipse cx="120" cy="90" rx="60" ry="22"/>
-            <ellipse cx="150" cy="80" rx="40" ry="18"/>
-            <ellipse cx="90" cy="82" rx="30" ry="14"/>
-
-            <ellipse cx="700" cy="60" rx="55" ry="20"/>
-            <ellipse cx="730" cy="52" rx="38" ry="16"/>
-            <ellipse cx="672" cy="54" rx="28" ry="13"/>
-
-            <ellipse cx="580" cy="130" rx="45" ry="15"/>
-            <ellipse cx="610" cy="122" rx="32" ry="12"/>
+          <!-- Sun rays (subtle) -->
+          <g opacity="0.25" stroke="#FFF6CC" stroke-width="3" stroke-linecap="round">
+            <line x1="450" y1="120" x2="450" y2="90"/>
+            <line x1="560" y1="150" x2="580" y2="128"/>
+            <line x1="620" y1="255" x2="650" y2="255"/>
+            <line x1="560" y1="360" x2="580" y2="382"/>
+            <line x1="450" y1="390" x2="450" y2="420"/>
+            <line x1="340" y1="360" x2="320" y2="382"/>
+            <line x1="280" y1="255" x2="250" y2="255"/>
+            <line x1="340" y1="150" x2="320" y2="128"/>
           </g>
 
-          <!-- ===== BIRDS ===== -->
-          <g stroke="#3A4A5A" stroke-width="2.5" fill="none" stroke-linecap="round">
-            <path d="M 610 115 Q 620 108 628 115 Q 636 108 645 115"/>
-            <path d="M 660 130 Q 668 124 674 130 Q 680 124 688 130"/>
-            <path d="M 690 145 Q 697 140 702 145 Q 707 140 714 145"/>
+          <!-- =====================================================
+               3. CLOUDS
+          ===================================================== -->
+          <!-- Cloud group 1 (left) -->
+          <g opacity="0.95">
+            <ellipse cx="130" cy="100" rx="70"  ry="26" fill="#FFFFFF"/>
+            <ellipse cx="170" cy="88"  rx="50"  ry="24" fill="#FFFFFF"/>
+            <ellipse cx="95"  cy="92"  rx="40"  ry="20" fill="#FFFFFF"/>
+            <ellipse cx="150" cy="80"  rx="35"  ry="18" fill="#FFFFFF"/>
+            <ellipse cx="115" cy="82"  rx="28"  ry="14" fill="#FFFFFF"/>
           </g>
 
-          <!-- ===== DISTANT MOUNTAINS ===== -->
-          <path d="M 0 320 L 90 250 L 160 300 L 240 230 L 320 300 L 400 260 L 470 310 L 550 250 L 640 310 L 720 260 L 800 320 L 850 290 L 850 380 L 0 380 Z"
-                fill="#7B9BB8" opacity="0.55"/>
-          <path d="M 0 350 L 100 290 L 180 340 L 260 280 L 350 340 L 430 300 L 520 350 L 610 300 L 700 350 L 780 310 L 850 350 L 850 400 L 0 400 Z"
-                fill="#5A7A98" opacity="0.55"/>
+          <!-- Cloud group 2 (top right) -->
+          <g opacity="0.9">
+            <ellipse cx="720" cy="70"  rx="65"  ry="22" fill="#FFFFFF"/>
+            <ellipse cx="755" cy="62"  rx="48"  ry="20" fill="#FFFFFF"/>
+            <ellipse cx="690" cy="66"  rx="36"  ry="16" fill="#FFFFFF"/>
+            <ellipse cx="740" cy="52"  rx="30"  ry="14" fill="#FFFFFF"/>
+          </g>
 
-          <!-- ===== RIVER (middle) ===== -->
-          <path d="M 0 400 Q 200 380 425 400 T 850 400 L 850 700 L 0 700 Z"
+          <!-- Cloud group 3 (small right mid) -->
+          <g opacity="0.85">
+            <ellipse cx="620" cy="140" rx="50"  ry="16" fill="#FFFFFF"/>
+            <ellipse cx="650" cy="132" rx="36"  ry="14" fill="#FFFFFF"/>
+            <ellipse cx="600" cy="136" rx="28"  ry="12" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Cloud group 4 (small left mid) -->
+          <g opacity="0.75">
+            <ellipse cx="300" cy="180" rx="42"  ry="14" fill="#FFFFFF"/>
+            <ellipse cx="325" cy="172" rx="30"  ry="12" fill="#FFFFFF"/>
+          </g>
+
+          <!-- =====================================================
+               4. BIRDS (V-formation)
+          ===================================================== -->
+          <g stroke="#2E3A47" stroke-width="2.8" fill="none" stroke-linecap="round">
+            <!-- Bird 1 (largest, left) -->
+            <path d="M 660 130 Q 670 120 680 130 Q 690 120 700 130"/>
+            <!-- Bird 2 -->
+            <path d="M 720 145 Q 728 138 736 145 Q 744 138 752 145"/>
+            <!-- Bird 3 -->
+            <path d="M 770 165 Q 777 159 784 165 Q 791 159 798 165"/>
+          </g>
+
+          <!-- =====================================================
+               5. MOUNTAINS (layered)
+          ===================================================== -->
+          <!-- Far range (light, softened) -->
+          <g filter="url(#soften)">
+            <path d="M 0 380 L 70 300 L 140 350 L 210 280 L 290 350
+                     L 370 300 L 430 350 L 500 290 L 580 350
+                     L 660 300 L 740 350 L 810 295 L 900 360
+                     L 900 430 L 0 430 Z"
+                  fill="url(#mtnFar)" opacity="0.65"/>
+          </g>
+
+          <!-- Snow caps on far range -->
+          <g fill="#FFFFFF" opacity="0.55">
+            <path d="M 200 290 L 210 280 L 220 290 L 215 295 L 205 295 Z"/>
+            <path d="M 490 300 L 500 290 L 510 300 L 505 305 L 495 305 Z"/>
+            <path d="M 800 305 L 810 295 L 820 305 L 815 310 L 805 310 Z"/>
+          </g>
+
+          <!-- Near range -->
+          <path d="M 0 415 L 80 340 L 160 390 L 240 330 L 330 395
+                   L 410 355 L 480 400 L 560 340 L 650 400
+                   L 730 350 L 810 405 L 900 370 L 900 470
+                   L 0 470 Z"
+                fill="url(#mtnNear)" opacity="0.7"/>
+
+          <!-- =====================================================
+               6. RIVER
+          ===================================================== -->
+          <path d="M 0 470 Q 225 450 450 470 T 900 470 L 900 750 L 0 750 Z"
                 fill="url(#riverGrad)"/>
 
-          <!-- River highlights -->
-          <g opacity="0.35" fill="#A8D8F0">
-            <ellipse cx="200" cy="470" rx="60" ry="4"/>
-            <ellipse cx="420" cy="500" rx="80" ry="5"/>
-            <ellipse cx="620" cy="480" rx="55" ry="4"/>
-            <ellipse cx="300" cy="560" rx="70" ry="5"/>
-            <ellipse cx="560" cy="600" rx="90" ry="6"/>
-            <ellipse cx="180" cy="630" rx="50" ry="4"/>
-            <ellipse cx="700" cy="650" rx="65" ry="5"/>
+          <!-- River highlight strips -->
+          <g fill="#A8D8F0" opacity="0.4">
+            <ellipse cx="150"  cy="510" rx="80" ry="3"/>
+            <ellipse cx="380"  cy="530" rx="100" ry="4"/>
+            <ellipse cx="660"  cy="515" rx="75" ry="3"/>
+            <ellipse cx="220"  cy="570" rx="90" ry="4"/>
+            <ellipse cx="520"  cy="590" rx="110" ry="4"/>
+            <ellipse cx="780"  cy="580" rx="70" ry="3"/>
+            <ellipse cx="130"  cy="640" rx="100" ry="5"/>
+            <ellipse cx="450"  cy="660" rx="120" ry="5"/>
+            <ellipse cx="720"  cy="680" rx="90" ry="5"/>
+            <ellipse cx="300"  cy="710" rx="130" ry="5"/>
+            <ellipse cx="620"  cy="730" rx="100" ry="5"/>
           </g>
 
-          <!-- ===== LEFT CLIFF (Parents side) ===== -->
-          <path d="M 0 380 L 200 360 L 240 380 L 240 700 L 0 700 Z" fill="url(#cliffGrad)"/>
-          <path d="M 0 380 L 200 360 L 240 380 L 240 400 Q 120 405 0 400 Z" fill="url(#grassGrad)"/>
+          <!-- River reflection of sky (lighter blue near top) -->
+          <ellipse cx="450" cy="490" rx="400" ry="25" fill="#B8E0F5" opacity="0.35"/>
+
+          <!-- =====================================================
+               7. LEFT CLIFF (Parents side)
+          ===================================================== -->
+          <!-- Rocky cliff -->
+          <path d="M 0 445
+                   L 60 430
+                   L 130 418
+                   L 190 425
+                   L 240 440
+                   L 265 460
+                   L 275 520
+                   L 265 620
+                   L 270 750
+                   L 0 750 Z"
+                fill="url(#cliffGrad)"/>
+
+          <!-- Cliff shading -->
+          <path d="M 0 445 L 60 430 L 130 418 L 190 425 L 240 440 L 265 460 L 275 520
+                   L 265 620 L 270 750 L 0 750 Z"
+                fill="url(#cliffShadeL)" opacity="0.6"/>
+
+          <!-- Rock texture lines -->
+          <g stroke="#4A3520" stroke-width="1.2" fill="none" opacity="0.5">
+            <path d="M 50 470 Q 60 490 55 520"/>
+            <path d="M 120 455 Q 130 480 125 520"/>
+            <path d="M 180 465 Q 190 490 185 530"/>
+            <path d="M 230 490 Q 240 520 235 560"/>
+            <path d="M 90 570 Q 100 600 95 640"/>
+            <path d="M 200 590 Q 210 630 205 680"/>
+            <path d="M 40 650 Q 50 690 45 730"/>
+            <path d="M 160 640 Q 170 680 165 730"/>
+          </g>
+
+          <!-- Grass on top of left cliff -->
+          <path d="M 0 445
+                   L 60 430
+                   L 130 418
+                   L 190 425
+                   L 240 440
+                   L 265 460
+                   L 265 470
+                   Q 130 465 0 468 Z"
+                fill="url(#grassGrad)"/>
+
           <!-- Grass texture -->
-          <g opacity="0.3" fill="#3E8A3A">
-            <circle cx="40" cy="388" r="3"/>
-            <circle cx="90" cy="383" r="3"/>
-            <circle cx="140" cy="378" r="3"/>
-            <circle cx="190" cy="372" r="3"/>
+          <g fill="#3E8A3A" opacity="0.55">
+            <circle cx="30"  cy="448" r="2.5"/>
+            <circle cx="75"  cy="440" r="2.5"/>
+            <circle cx="120" cy="432" r="2.5"/>
+            <circle cx="165" cy="432" r="2.5"/>
+            <circle cx="210" cy="442" r="2.5"/>
+            <circle cx="245" cy="452" r="2.5"/>
           </g>
 
-          <!-- ===== RIGHT CLIFF (School side) ===== -->
-          <path d="M 850 380 L 620 360 L 580 380 L 580 700 L 850 700 Z" fill="url(#cliffGrad)"/>
-          <path d="M 850 380 L 620 360 L 580 380 L 580 400 Q 700 405 850 400 Z" fill="url(#grassGrad)"/>
-          <g opacity="0.3" fill="#3E8A3A">
-            <circle cx="660" cy="378" r="3"/>
-            <circle cx="710" cy="373" r="3"/>
-            <circle cx="760" cy="378" r="3"/>
-            <circle cx="810" cy="385" r="3"/>
+          <!-- Bushes on left cliff -->
+          <g fill="#3D8B3D">
+            <ellipse cx="40"  cy="432" rx="22" ry="14"/>
+            <ellipse cx="55"  cy="428" rx="18" ry="12"/>
+            <ellipse cx="25"  cy="428" rx="16" ry="10"/>
+          </g>
+          <g fill="#4FA54F">
+            <ellipse cx="42"  cy="428" rx="16" ry="10"/>
+            <ellipse cx="55"  cy="424" rx="12" ry="8"/>
           </g>
 
-          <!-- ===== WOODEN BRIDGE ===== -->
-          <!-- Main planks -->
-          <path d="M 235 375 Q 425 350 615 375 L 615 385 Q 425 360 235 385 Z"
+          <!-- =====================================================
+               8. RIGHT CLIFF (School side)
+          ===================================================== -->
+          <!-- Rocky cliff -->
+          <path d="M 900 445
+                   L 840 430
+                   L 770 418
+                   L 710 425
+                   L 660 440
+                   L 635 460
+                   L 625 520
+                   L 635 620
+                   L 630 750
+                   L 900 750 Z"
+                fill="url(#cliffGrad)"/>
+
+          <path d="M 900 445 L 840 430 L 770 418 L 710 425 L 660 440 L 635 460 L 625 520
+                   L 635 620 L 630 750 L 900 750 Z"
+                fill="url(#cliffShadeR)" opacity="0.6"/>
+
+          <!-- Rock texture -->
+          <g stroke="#4A3520" stroke-width="1.2" fill="none" opacity="0.5">
+            <path d="M 850 470 Q 840 490 845 520"/>
+            <path d="M 780 455 Q 770 480 775 520"/>
+            <path d="M 720 465 Q 710 490 715 530"/>
+            <path d="M 670 490 Q 660 520 665 560"/>
+            <path d="M 810 570 Q 800 600 805 640"/>
+            <path d="M 700 590 Q 690 630 695 680"/>
+            <path d="M 860 650 Q 850 690 855 730"/>
+            <path d="M 740 640 Q 730 680 735 730"/>
+          </g>
+
+          <!-- Grass on right cliff -->
+          <path d="M 900 445
+                   L 840 430
+                   L 770 418
+                   L 710 425
+                   L 660 440
+                   L 635 460
+                   L 635 470
+                   Q 770 465 900 468 Z"
+                fill="url(#grassGrad)"/>
+
+          <g fill="#3E8A3A" opacity="0.55">
+            <circle cx="870" cy="448" r="2.5"/>
+            <circle cx="825" cy="440" r="2.5"/>
+            <circle cx="780" cy="432" r="2.5"/>
+            <circle cx="735" cy="432" r="2.5"/>
+            <circle cx="690" cy="442" r="2.5"/>
+            <circle cx="655" cy="452" r="2.5"/>
+          </g>
+
+          <!-- Bushes on right cliff -->
+          <g fill="#3D8B3D">
+            <ellipse cx="870" cy="432" rx="22" ry="14"/>
+            <ellipse cx="855" cy="428" rx="18" ry="12"/>
+            <ellipse cx="885" cy="428" rx="16" ry="10"/>
+          </g>
+          <g fill="#4FA54F">
+            <ellipse cx="868" cy="428" rx="16" ry="10"/>
+            <ellipse cx="855" cy="424" rx="12" ry="8"/>
+          </g>
+
+          <!-- Trees on right cliff (near school) -->
+          <g>
+            <rect x="882" y="400" width="4" height="30" fill="#6B4226"/>
+            <ellipse cx="884" cy="395" rx="18" ry="14" fill="#3D8B3D"/>
+            <ellipse cx="884" cy="392" rx="14" ry="10" fill="#4FA54F"/>
+          </g>
+          <g>
+            <rect x="850" y="408" width="3" height="24" fill="#6B4226"/>
+            <ellipse cx="851" cy="403" rx="13" ry="10" fill="#3D8B3D"/>
+            <ellipse cx="851" cy="400" rx="10" ry="7" fill="#4FA54F"/>
+          </g>
+          <g>
+            <rect x="815" y="412" width="3" height="22" fill="#6B4226"/>
+            <ellipse cx="816" cy="408" rx="11" ry="9" fill="#3D8B3D"/>
+            <ellipse cx="816" cy="406" rx="8" ry="6" fill="#4FA54F"/>
+          </g>
+
+          <!-- =====================================================
+               9. WOODEN BRIDGE
+          ===================================================== -->
+          <!-- Bridge shadow -->
+          <path d="M 265 462 Q 450 440 635 462 L 635 468 Q 450 446 265 468 Z"
+                fill="#000000" opacity="0.2"/>
+
+          <!-- Bridge base beam -->
+          <path d="M 260 458 Q 450 435 640 458 L 640 472 Q 450 449 260 472 Z"
+                fill="#5A3515"/>
+
+          <!-- Bridge top planks -->
+          <path d="M 255 452 Q 450 428 645 452 L 645 462 Q 450 438 255 462 Z"
                 fill="#8B5A2B"/>
-          <path d="M 235 385 Q 425 360 615 385 L 615 395 Q 425 370 235 395 Z"
-                fill="#6B4218"/>
-          <!-- Vertical supports -->
-          <g stroke="#5A3515" stroke-width="3" fill="none">
-            <line x1="270" y1="372" x2="270" y2="395"/>
-            <line x1="320" y1="368" x2="320" y2="391"/>
-            <line x1="370" y1="364" x2="370" y2="387"/>
-            <line x1="425" y1="362" x2="425" y2="385"/>
-            <line x1="480" y1="364" x2="480" y2="387"/>
-            <line x1="530" y1="368" x2="530" y2="391"/>
-            <line x1="580" y1="372" x2="580" y2="395"/>
-          </g>
-          <!-- Rope rails -->
-          <path d="M 235 370 Q 425 345 615 370" stroke="#3D2817" stroke-width="2.5" fill="none"/>
-          <path d="M 235 368 Q 425 343 615 368" stroke="#3D2817" stroke-width="1.5" fill="none"/>
 
-          <!-- ===== PARENTS + CHILD (left) ===== -->
-          <g transform="translate(105, 320)">
-            <!-- Mother (pink) -->
-            <ellipse cx="0" cy="45" rx="10" ry="20" fill="#E84B7A"/>
-            <circle cx="0" cy="18" r="9" fill="#F5C9A8"/>
-            <path d="M -10 12 Q 0 6 10 12 L 10 18 Q 0 14 -10 18 Z" fill="#2A2A2A"/>
-            <!-- legs -->
-            <rect x="-6" y="60" width="3.5" height="18" fill="#2A2A2A"/>
-            <rect x="2" y="60" width="3.5" height="18" fill="#2A2A2A"/>
-
-            <!-- Father (blue) -->
-            <g transform="translate(28, -5)">
-              <ellipse cx="0" cy="45" rx="11" ry="22" fill="#3B82C4"/>
-              <circle cx="0" cy="18" r="9" fill="#F5C9A8"/>
-              <path d="M -10 12 Q 0 6 10 12 L 10 18 Q 0 14 -10 18 Z" fill="#2A2A2A"/>
-              <rect x="-6" y="62" width="4" height="20" fill="#2A2A2A"/>
-              <rect x="2" y="62" width="4" height="20" fill="#2A2A2A"/>
-            </g>
-
-            <!-- Child (small, blue uniform) -->
-            <g transform="translate(50, 20)">
-              <ellipse cx="0" cy="30" rx="7" ry="13" fill="#4B7BC4"/>
-              <circle cx="0" cy="12" r="6" fill="#F5C9A8"/>
-              <path d="M -6 8 Q 0 4 6 8 L 6 12 Q 0 9 -6 12 Z" fill="#2A2A2A"/>
-              <rect x="-4" y="42" width="2.5" height="12" fill="#2A2A2A"/>
-              <rect x="1.5" y="42" width="2.5" height="12" fill="#2A2A2A"/>
-              <!-- Backpack -->
-              <rect x="-9" y="20" width="6" height="10" rx="2" fill="#2563EB"/>
-            </g>
+          <!-- Plank lines (vertical) -->
+          <g stroke="#4A2810" stroke-width="1.5" opacity="0.7">
+            <line x1="290" y1="447" x2="290" y2="462"/>
+            <line x1="330" y1="442" x2="330" y2="457"/>
+            <line x1="370" y1="438" x2="370" y2="453"/>
+            <line x1="410" y1="435" x2="410" y2="450"/>
+            <line x1="450" y1="434" x2="450" y2="449"/>
+            <line x1="490" y1="435" x2="490" y2="450"/>
+            <line x1="530" y1="438" x2="530" y2="453"/>
+            <line x1="570" y1="442" x2="570" y2="457"/>
+            <line x1="610" y1="447" x2="610" y2="462"/>
           </g>
 
-          <!-- ===== SCHOOL (right) ===== -->
-          <g transform="translate(675, 285)">
-            <!-- Main building -->
-            <rect x="0" y="30" width="140" height="70" fill="url(#schoolGrad)" stroke="#C9A876" stroke-width="1"/>
+          <!-- Top rail (rope/pole) -->
+          <path d="M 260 425 Q 450 400 640 425"
+                stroke="#3D2817" stroke-width="3" fill="none"/>
+          <path d="M 260 422 Q 450 397 640 422"
+                stroke="#3D2817" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+          <!-- Vertical posts -->
+          <g stroke="#5A3515" stroke-width="3.5" stroke-linecap="round">
+            <line x1="270" y1="420" x2="270" y2="455"/>
+            <line x1="320" y1="412" x2="320" y2="448"/>
+            <line x1="370" y1="406" x2="370" y2="442"/>
+            <line x1="420" y1="402" x2="420" y2="438"/>
+            <line x1="470" y1="402" x2="470" y2="438"/>
+            <line x1="520" y1="406" x2="520" y2="442"/>
+            <line x1="570" y1="412" x2="570" y2="448"/>
+            <line x1="620" y1="420" x2="620" y2="455"/>
+          </g>
+
+          <!-- Small cross-ties -->
+          <g stroke="#5A3515" stroke-width="1" opacity="0.6">
+            <path d="M 260 445 Q 450 424 640 445" fill="none"/>
+          </g>
+
+          <!-- =====================================================
+               10. FAMILY (LEFT) — Mother, Father, Child
+          ===================================================== -->
+
+          <!-- MOTHER (left) -->
+          <g transform="translate(110, 350)">
+            <!-- Shadow -->
+            <ellipse cx="0" cy="72" rx="14" ry="3" fill="#000000" opacity="0.25"/>
+            <!-- Legs (dark) -->
+            <rect x="-8" y="55" width="5" height="20" fill="#2A2A3A" rx="2"/>
+            <rect x="3"  y="55" width="5" height="20" fill="#2A2A3A" rx="2"/>
+            <!-- Shoes -->
+            <ellipse cx="-5.5" cy="75" rx="5" ry="2.5" fill="#1A1A1A"/>
+            <ellipse cx="5.5"  cy="75" rx="5" ry="2.5" fill="#1A1A1A"/>
+            <!-- Dress (pink) -->
+            <path d="M -12 40 L -15 60 L 15 60 L 12 40 Q 0 38 -12 40 Z" fill="#E84B7A"/>
+            <path d="M -12 40 Q 0 32 12 40 L 14 42 Q 0 36 -14 42 Z" fill="#D93B6B"/>
+            <!-- Arms -->
+            <rect x="-14" y="40" width="4" height="16" fill="#F5C9A8" rx="2"/>
+            <rect x="10"  y="40" width="4" height="16" fill="#F5C9A8" rx="2"/>
+            <!-- Purse in hand -->
+            <rect x="-16" y="54" width="6" height="8" rx="1.5" fill="#3A2A1A"/>
+            <!-- Neck -->
+            <rect x="-3" y="32" width="6" height="6" fill="#F5C9A8"/>
+            <!-- Head -->
+            <circle cx="0" cy="24" r="10" fill="#F5C9A8"/>
+            <!-- Hair (dark brown, medium length) -->
+            <path d="M -10 22 Q -12 12 -5 10 Q 5 8 10 14 Q 12 20 10 26 Q 9 22 6 20 Q 2 18 -3 20 Q -7 22 -10 22 Z" fill="#3A2416"/>
+            <path d="M -10 22 Q -12 30 -11 34 L -8 34 Q -9 28 -8 24 Z" fill="#3A2416"/>
+            <path d="M 10 22 Q 12 30 11 34 L 8 34 Q 9 28 8 24 Z" fill="#3A2416"/>
+            <!-- Eye (simple dot) -->
+            <circle cx="-3" cy="24" r="1" fill="#1A1A1A"/>
+            <circle cx="3"  cy="24" r="1" fill="#1A1A1A"/>
+            <!-- Smile -->
+            <path d="M -3 29 Q 0 31 3 29" stroke="#8B4A2A" stroke-width="0.8" fill="none"/>
+          </g>
+
+          <!-- FATHER (middle-left) -->
+          <g transform="translate(160, 340)">
+            <ellipse cx="0" cy="82" rx="16" ry="3" fill="#000000" opacity="0.25"/>
+            <!-- Legs (dark blue pants) -->
+            <rect x="-9" y="60" width="6" height="22" fill="#1E3A5F" rx="2"/>
+            <rect x="3"  y="60" width="6" height="22" fill="#1E3A5F" rx="2"/>
+            <!-- Shoes -->
+            <ellipse cx="-6" cy="84" rx="6" ry="3" fill="#1A1A1A"/>
+            <ellipse cx="6"  cy="84" rx="6" ry="3" fill="#1A1A1A"/>
+            <!-- Shirt (blue) -->
+            <path d="M -14 40 Q 0 34 14 40 L 15 60 Q 0 62 -15 60 Z" fill="#3B82C4"/>
+            <path d="M -14 40 Q 0 34 14 40 L 12 44 Q 0 40 -12 44 Z" fill="#2E6BA8"/>
+            <!-- Arms -->
+            <rect x="-16" y="42" width="4" height="18" fill="#F5C9A8" rx="2"/>
+            <rect x="12"  y="42" width="4" height="18" fill="#F5C9A8" rx="2"/>
+            <!-- Neck -->
+            <rect x="-3" y="32" width="6" height="6" fill="#F5C9A8"/>
+            <!-- Head -->
+            <circle cx="0" cy="24" r="11" fill="#F5C9A8"/>
+            <!-- Hair (black, short) -->
+            <path d="M -11 22 Q -12 10 -3 8 Q 8 8 11 14 Q 12 20 10 22 Q 8 18 4 18 Q -2 16 -6 18 Q -10 20 -11 22 Z" fill="#1A1A1A"/>
+            <path d="M -11 22 Q -12 18 -10 14 L -8 15 Q -9 19 -8 22 Z" fill="#1A1A1A"/>
+            <!-- Eyes -->
+            <circle cx="-3.5" cy="24" r="1" fill="#1A1A1A"/>
+            <circle cx="3.5"  cy="24" r="1" fill="#1A1A1A"/>
+            <!-- Smile -->
+            <path d="M -3 29 Q 0 31.5 3 29" stroke="#8B4A2A" stroke-width="0.9" fill="none"/>
+          </g>
+
+          <!-- CHILD (right of parents) -->
+          <g transform="translate(200, 375)">
+            <ellipse cx="0" cy="52" rx="10" ry="2" fill="#000000" opacity="0.25"/>
+            <!-- Legs (blue) -->
+            <rect x="-5" y="38" width="3.5" height="14" fill="#1E3A5F" rx="1"/>
+            <rect x="1.5" y="38" width="3.5" height="14" fill="#1E3A5F" rx="1"/>
+            <!-- Shoes -->
+            <ellipse cx="-3.2" cy="53" rx="3.5" ry="1.8" fill="#1A1A1A"/>
+            <ellipse cx="3.2"  cy="53" rx="3.5" ry="1.8" fill="#1A1A1A"/>
+            <!-- Shirt (blue) -->
+            <path d="M -8 22 Q 0 18 8 22 L 9 38 Q 0 40 -9 38 Z" fill="#4B7BC4"/>
+            <!-- Shorts -->
+            <rect x="-8" y="36" width="16" height="5" fill="#2E4A78" rx="1"/>
+            <!-- Backpack -->
+            <rect x="-13" y="20" width="7" height="14" rx="2" fill="#2563EB"/>
+            <rect x="-12" y="22" width="5" height="3" rx="1" fill="#1E52B8"/>
+            <!-- Arm holding parent's hand -->
+            <rect x="7" y="24" width="3" height="10" fill="#F5C9A8" rx="1.5"/>
+            <!-- Neck -->
+            <rect x="-2.5" y="14" width="5" height="5" fill="#F5C9A8"/>
+            <!-- Head -->
+            <circle cx="0" cy="9" r="8" fill="#F5C9A8"/>
+            <!-- Hair -->
+            <path d="M -8 8 Q -9 0 -2 -2 Q 6 -3 8 3 Q 8 8 7 9 Q 5 5 1 5 Q -3 5 -6 7 Q -8 8 -8 8 Z" fill="#2A1A10"/>
+            <!-- Eyes -->
+            <circle cx="-2.5" cy="9" r="0.9" fill="#1A1A1A"/>
+            <circle cx="2.5"  cy="9" r="0.9" fill="#1A1A1A"/>
+            <!-- Smile -->
+            <path d="M -2 12 Q 0 13.5 2 12" stroke="#8B4A2A" stroke-width="0.7" fill="none"/>
+          </g>
+
+          <!-- =====================================================
+               11. SCHOOL BUILDING (RIGHT)
+          ===================================================== -->
+          <g transform="translate(690, 290)">
+
+            <!-- Building shadow -->
+            <ellipse cx="75" cy="105" rx="90" ry="6" fill="#000000" opacity="0.2"/>
+
+            <!-- Main building body -->
+            <rect x="0" y="35" width="150" height="70" fill="url(#schoolGrad)"
+                  stroke="#C9A876" stroke-width="1.2"/>
+
+            <!-- Brick lines -->
+            <g stroke="#D9BE96" stroke-width="0.5" opacity="0.6">
+              <line x1="0"  y1="50" x2="150" y2="50"/>
+              <line x1="0"  y1="65" x2="150" y2="65"/>
+              <line x1="0"  y1="80" x2="150" y2="80"/>
+              <line x1="0"  y1="95" x2="150" y2="95"/>
+            </g>
+
             <!-- Roof -->
-            <polygon points="-8,30 70,0 148,30" fill="#D94F3D"/>
-            <polygon points="-8,30 70,0 70,8 2,32" fill="#B33D2C"/>
-            <!-- Door -->
-            <rect x="60" y="65" width="20" height="35" fill="#6B4226"/>
-            <circle cx="76" cy="82" r="1.2" fill="#F5C860"/>
-            <!-- Windows -->
-            <rect x="15" y="48" width="18" height="18" fill="#8ECAF5" stroke="#5A8BB8"/>
-            <line x1="24" y1="48" x2="24" y2="66" stroke="#5A8BB8" stroke-width="1"/>
-            <line x1="15" y1="57" x2="33" y2="57" stroke="#5A8BB8" stroke-width="1"/>
-
-            <rect x="107" y="48" width="18" height="18" fill="#8ECAF5" stroke="#5A8BB8"/>
-            <line x1="116" y1="48" x2="116" y2="66" stroke="#5A8BB8" stroke-width="1"/>
-            <line x1="107" y1="57" x2="125" y2="57" stroke="#5A8BB8" stroke-width="1"/>
+            <polygon points="-10,35 75,0 160,35" fill="url(#roofGrad)"/>
+            <polygon points="-10,35 75,0 75,8 5,37" fill="#A02C20" opacity="0.6"/>
+            <!-- Roof tiles -->
+            <g stroke="#8B2D20" stroke-width="0.8" opacity="0.6">
+              <line x1="15"  y1="28" x2="35"  y2="20"/>
+              <line x1="40"  y1="20" x2="60"  y2="12"/>
+              <line x1="75"  y1="8"  x2="95"  y2="16"/>
+              <line x1="100" y1="16" x2="120" y2="24"/>
+              <line x1="125" y1="24" x2="145" y2="32"/>
+            </g>
 
             <!-- Clock tower -->
-            <rect x="58" y="5" width="24" height="28" fill="#F5E1C0" stroke="#C9A876"/>
-            <circle cx="70" cy="18" r="6" fill="#FFFFFF" stroke="#8B7355"/>
-            <line x1="70" y1="18" x2="70" y2="14" stroke="#3A2A1A" stroke-width="1"/>
-            <line x1="70" y1="18" x2="73" y2="18" stroke="#3A2A1A" stroke-width="1"/>
+            <rect x="62" y="4" width="26" height="32" fill="#F5E1C0" stroke="#C9A876" stroke-width="1"/>
+            <polygon points="58,4 75,-8 92,4" fill="#B33D2C"/>
+            <!-- Clock face -->
+            <circle cx="75" cy="20" r="7" fill="#FFFFFF" stroke="#8B7355" stroke-width="1.2"/>
+            <line x1="75" y1="20" x2="75" y2="15" stroke="#1A1A1A" stroke-width="1"/>
+            <line x1="75" y1="20" x2="79" y2="20" stroke="#1A1A1A" stroke-width="1"/>
+            <circle cx="75" cy="20" r="0.9" fill="#1A1A1A"/>
 
             <!-- Flag pole -->
-            <line x1="70" y1="5" x2="70" y2="-15" stroke="#5A4530" stroke-width="2"/>
-            <!-- Flag -->
-            <path d="M 70 -15 L 92 -10 L 70 -5 Z" fill="#E84B3A"/>
-            <circle cx="70" cy="-15" r="2" fill="#F5C860"/>
+            <line x1="75" y1="-8" x2="75" y2="-28" stroke="#5A4530" stroke-width="1.8"/>
+            <circle cx="75" cy="-28" r="1.8" fill="#F5C860"/>
+            <!-- Tricolor flag -->
+            <path d="M 75 -28 L 100 -22 L 100 -14 L 75 -20 Z" fill="#E84B3A"/>
+            <path d="M 75 -20 L 100 -14 L 100 -8 L 75 -14 Z" fill="#FFFFFF"/>
+            <path d="M 75 -14 L 100 -8 L 100 -2 L 75 -8 Z" fill="#16A34A"/>
+            <!-- Flag pole (bottom part continues into roof) -->
+            <line x1="75" y1="0" x2="75" y2="-8" stroke="#5A4530" stroke-width="1.8"/>
+
+            <!-- Left window -->
+            <rect x="12" y="52" width="22" height="22" fill="#8ECAF5"
+                  stroke="#5A8BB8" stroke-width="1.2"/>
+            <line x1="23" y1="52" x2="23" y2="74" stroke="#5A8BB8" stroke-width="1"/>
+            <line x1="12" y1="63" x2="34" y2="63" stroke="#5A8BB8" stroke-width="1"/>
+            <!-- Window glow -->
+            <rect x="13" y="53" width="9" height="9" fill="#B8E0F5" opacity="0.6"/>
+
+            <!-- Right window -->
+            <rect x="116" y="52" width="22" height="22" fill="#8ECAF5"
+                  stroke="#5A8BB8" stroke-width="1.2"/>
+            <line x1="127" y1="52" x2="127" y2="74" stroke="#5A8BB8" stroke-width="1"/>
+            <line x1="116" y1="63" x2="138" y2="63" stroke="#5A8BB8" stroke-width="1"/>
+            <rect x="117" y="53" width="9" height="9" fill="#B8E0F5" opacity="0.6"/>
+
+            <!-- Door -->
+            <rect x="64" y="72" width="22" height="33" fill="#6B4226" rx="1"/>
+            <rect x="66" y="74" width="8" height="14" fill="#8B5A2B"/>
+            <rect x="76" y="74" width="8" height="14" fill="#8B5A2B"/>
+            <circle cx="82" cy="90" r="1.3" fill="#F5C860"/>
+
+            <!-- Entrance steps -->
+            <rect x="60" y="105" width="30" height="3" fill="#C9A876"/>
+            <rect x="62" y="102" width="26" height="3" fill="#D9BE96"/>
 
             <!-- SCHOOL sign -->
-            <rect x="30" y="52" width="80" height="20" rx="3" fill="#2E6CB8" stroke="#1E4A80"/>
-            <text x="70" y="66" text-anchor="middle" font-family="Poppins, sans-serif"
-                  font-size="11" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">SCHOOL</text>
+            <rect x="30" y="55" width="90" height="22" rx="3" fill="#2E6CB8" stroke="#1E4A80" stroke-width="1.5"/>
+            <text x="75" y="70" text-anchor="middle"
+                  font-family="Poppins, sans-serif"
+                  font-size="12" font-weight="800"
+                  fill="#FFFFFF" letter-spacing="2">SCHOOL</text>
+
+            <!-- Trees near school -->
+            <g transform="translate(-25, 50)">
+              <rect x="-2" y="15" width="4" height="20" fill="#6B4226"/>
+              <ellipse cx="0" cy="8" rx="15" ry="13" fill="#3D8B3D"/>
+              <ellipse cx="0" cy="5" rx="11" ry="9" fill="#4FA54F"/>
+            </g>
+            <g transform="translate(175, 55)">
+              <rect x="-2" y="15" width="4" height="20" fill="#6B4226"/>
+              <ellipse cx="0" cy="8" rx="14" ry="12" fill="#3D8B3D"/>
+              <ellipse cx="0" cy="5" rx="10" ry="8" fill="#4FA54F"/>
+            </g>
           </g>
 
-          <!-- ===== YELLOW SCHOOL BUS ===== -->
-          <g transform="translate(340, 300)">
+          <!-- =====================================================
+               12. YELLOW SCHOOL BUS
+          ===================================================== -->
+          <g transform="translate(345, 300)">
+
             <!-- Sun glow behind bus -->
-            <ellipse cx="75" cy="-20" rx="130" ry="60" fill="#FFF4D0" opacity="0.55"/>
+            <ellipse cx="105" cy="-20" rx="160" ry="70" fill="#FFF4D0" opacity="0.5"/>
+
+            <!-- Bus shadow under -->
+            <ellipse cx="105" cy="80" rx="130" ry="6" fill="#000000" opacity="0.3"/>
+
+            <!-- Hood / front extension -->
+            <path d="M 168 20 L 195 25 L 195 55 L 168 55 Z" fill="#FFD93D" stroke="#B88A00" stroke-width="2"/>
+            <!-- Front grille -->
+            <rect x="190" y="30" width="6" height="20" fill="#E8A800" stroke="#B88A00"/>
+            <line x1="191" y1="33" x2="195" y2="33" stroke="#8B6800"/>
+            <line x1="191" y1="38" x2="195" y2="38" stroke="#8B6800"/>
+            <line x1="191" y1="43" x2="195" y2="43" stroke="#8B6800"/>
+            <line x1="191" y1="48" x2="195" y2="48" stroke="#8B6800"/>
+
+            <!-- Front bumper -->
+            <rect x="188" y="52" width="14" height="8" rx="2" fill="#9A9A9A" stroke="#5A5A5A" stroke-width="1"/>
 
             <!-- Bus body -->
-            <rect x="0" y="0" width="150" height="60" rx="8" fill="url(#busGrad)" stroke="#B88A00" stroke-width="2"/>
-            <!-- Front slope -->
-            <path d="M 130 0 L 150 5 L 150 45 L 130 60 Z" fill="#F5B800" stroke="#B88A00" stroke-width="2"/>
-            <!-- Hood -->
-            <path d="M 150 15 L 168 18 L 168 45 L 150 45 Z" fill="#FFD93D" stroke="#B88A00" stroke-width="2"/>
-            <!-- Bumper -->
-            <rect x="165" y="40" width="8" height="8" fill="#7A7A7A" stroke="#4A4A4A"/>
+            <rect x="0" y="0" width="170" height="65" rx="10"
+                  fill="url(#busGrad)" stroke="#B88A00" stroke-width="2.2"/>
 
-            <!-- Windows -->
-            <g fill="#7EC0E8" stroke="#3A6B8C" stroke-width="1.5">
-              <rect x="8" y="10" width="18" height="18" rx="2"/>
-              <rect x="30" y="10" width="18" height="18" rx="2"/>
-              <rect x="52" y="10" width="18" height="18" rx="2"/>
-              <rect x="74" y="10" width="18" height="18" rx="2"/>
-              <rect x="96" y="10" width="18" height="18" rx="2"/>
-              <!-- Front window -->
-              <path d="M 120 10 L 140 13 L 140 28 L 120 28 Z"/>
+            <!-- Roof highlight -->
+            <rect x="3" y="2" width="164" height="20" rx="8" fill="url(#busHi)" opacity="0.6"/>
+
+            <!-- Roof rack / lights strip -->
+            <rect x="5" y="-3" width="160" height="4" rx="2" fill="#E8A800" stroke="#B88A00" stroke-width="0.8"/>
+
+            <!-- Warning lights (top) -->
+            <circle cx="20" cy="-1" r="3" fill="#FF3333"/>
+            <circle cx="20" cy="-1" r="1.5" fill="#FF8888" opacity="0.8"/>
+            <circle cx="150" cy="-1" r="3" fill="#FF3333"/>
+            <circle cx="150" cy="-1" r="1.5" fill="#FF8888" opacity="0.8"/>
+
+            <!-- Windows (with frames) -->
+            <g>
+              <!-- Window frame stroke -->
+              <g stroke="#8B6800" stroke-width="1.5">
+                <rect x="10"  y="12" width="20" height="22" rx="2" fill="#7EC0E8"/>
+                <rect x="34"  y="12" width="20" height="22" rx="2" fill="#7EC0E8"/>
+                <rect x="58"  y="12" width="20" height="22" rx="2" fill="#7EC0E8"/>
+                <rect x="82"  y="12" width="20" height="22" rx="2" fill="#7EC0E8"/>
+                <rect x="106" y="12" width="20" height="22" rx="2" fill="#7EC0E8"/>
+                <rect x="130" y="12" width="20" height="22" rx="2" fill="#7EC0E8"/>
+              </g>
+
+              <!-- Window glass highlights -->
+              <rect x="11"  y="13" width="6" height="8" fill="#B8E0F5" opacity="0.7"/>
+              <rect x="35"  y="13" width="6" height="8" fill="#B8E0F5" opacity="0.7"/>
+              <rect x="59"  y="13" width="6" height="8" fill="#B8E0F5" opacity="0.7"/>
+              <rect x="83"  y="13" width="6" height="8" fill="#B8E0F5" opacity="0.7"/>
+              <rect x="107" y="13" width="6" height="8" fill="#B8E0F5" opacity="0.7"/>
+              <rect x="131" y="13" width="6" height="8" fill="#B8E0F5" opacity="0.7"/>
             </g>
 
-            <!-- Kids peeking -->
+            <!-- Kids peeking out windows -->
             <g fill="#F5C9A8">
-              <circle cx="17" cy="20" r="3.5"/>
-              <circle cx="39" cy="20" r="3.5"/>
-              <circle cx="61" cy="20" r="3.5"/>
-              <circle cx="83" cy="20" r="3.5"/>
-              <circle cx="105" cy="20" r="3.5"/>
-              <circle cx="130" cy="20" r="3.5"/>
+              <!-- Window 1 -->
+              <circle cx="20"  cy="26" r="4"/>
+              <circle cx="20"  cy="24" r="3" fill="#3A2416"/>
+              <!-- Window 2 -->
+              <circle cx="44"  cy="26" r="4"/>
+              <circle cx="44"  cy="24" r="3" fill="#1A1A1A"/>
+              <!-- Window 3 -->
+              <circle cx="68"  cy="26" r="4"/>
+              <circle cx="68"  cy="24" r="3" fill="#6B4226"/>
+              <!-- Window 4 -->
+              <circle cx="92"  cy="26" r="4"/>
+              <circle cx="92"  cy="24" r="3" fill="#3A2416"/>
+              <!-- Window 5 -->
+              <circle cx="116" cy="26" r="4"/>
+              <circle cx="116" cy="24" r="3" fill="#1A1A1A"/>
+              <!-- Window 6 -->
+              <circle cx="140" cy="26" r="4"/>
+              <circle cx="140" cy="24" r="3" fill="#6B4226"/>
             </g>
 
-            <!-- "SCHOOL BUS" text -->
-            <text x="70" y="48" text-anchor="middle" font-family="Poppins, sans-serif"
-                  font-size="8" font-weight="800" fill="#3A2A1A" letter-spacing="0.5">SCHOOL BUS</text>
+            <!-- Front window (windshield, driver) -->
+            <path d="M 152 10 L 175 13 L 175 35 L 152 35 Z"
+                  fill="#7EC0E8" stroke="#8B6800" stroke-width="1.5"/>
+            <path d="M 154 12 L 162 14 L 162 20 L 154 20 Z"
+                  fill="#B8E0F5" opacity="0.7"/>
+
+            <!-- Driver silhouette (subtle) -->
+            <circle cx="166" cy="22" r="4" fill="#3A2A1A" opacity="0.5"/>
+
+            <!-- Bus stripe -->
+            <rect x="0" y="40" width="170" height="4" fill="#3A2A1A"/>
+            <rect x="0" y="44" width="170" height="2" fill="#1A1A1A" opacity="0.4"/>
+
+            <!-- SCHOOL BUS text -->
+            <text x="85" y="57" text-anchor="middle"
+                  font-family="Poppins, sans-serif"
+                  font-size="9.5" font-weight="800"
+                  fill="#3A2A1A" letter-spacing="1">SCHOOL BUS</text>
 
             <!-- Wheels -->
-            <circle cx="30" cy="62" r="10" fill="#2A2A2A"/>
-            <circle cx="30" cy="62" r="4" fill="#7A7A7A"/>
-            <circle cx="118" cy="62" r="10" fill="#2A2A2A"/>
-            <circle cx="118" cy="62" r="4" fill="#7A7A7A"/>
+            <g>
+              <!-- Rear wheel -->
+              <circle cx="38" cy="66" r="12" fill="#1A1A1A"/>
+              <circle cx="38" cy="66" r="9"  fill="#3A3A3A"/>
+              <circle cx="38" cy="66" r="5"  fill="#9A9A9A"/>
+              <circle cx="38" cy="66" r="2"  fill="#5A5A5A"/>
+              <!-- Wheel spokes -->
+              <g stroke="#5A5A5A" stroke-width="1">
+                <line x1="38" y1="58" x2="38" y2="74"/>
+                <line x1="30" y1="66" x2="46" y2="66"/>
+              </g>
+            </g>
+            <g>
+              <!-- Front wheel -->
+              <circle cx="140" cy="66" r="12" fill="#1A1A1A"/>
+              <circle cx="140" cy="66" r="9"  fill="#3A3A3A"/>
+              <circle cx="140" cy="66" r="5"  fill="#9A9A9A"/>
+              <circle cx="140" cy="66" r="2"  fill="#5A5A5A"/>
+              <g stroke="#5A5A5A" stroke-width="1">
+                <line x1="140" y1="58" x2="140" y2="74"/>
+                <line x1="132" y1="66" x2="148" y2="66"/>
+              </g>
+            </g>
 
             <!-- Headlight -->
-            <circle cx="166" cy="30" r="3.5" fill="#FFF8A8" stroke="#B88A00"/>
+            <circle cx="196" cy="42" r="4" fill="#FFF6A0" stroke="#B88A00" stroke-width="1.2"/>
+            <circle cx="196" cy="42" r="2" fill="#FFFFFF"/>
+
+            <!-- Headlight glow -->
+            <ellipse cx="210" cy="42" rx="20" ry="8" fill="#FFF6A0" opacity="0.3"/>
+
+            <!-- Taillight -->
+            <rect x="-3" y="35" width="4" height="6" rx="1" fill="#E84B3A"/>
           </g>
 
-          <!-- ===== SHIELD + EYE + HANDS (Hero icon) ===== -->
-          <g transform="translate(425, 490)" filter="url(#softGlow)">
+          <!-- =====================================================
+               13. HERO LOGO — SHIELD + EYE + HANDS
+          ===================================================== -->
 
-            <!-- Outer glow ring -->
-            <circle r="140" fill="#4BA3E3" opacity="0.15"/>
-            <circle r="100" fill="#4BA3E3" opacity="0.2"/>
-            <circle r="70" fill="#6BB6ED" opacity="0.25"/>
+          <g transform="translate(450, 530)">
 
-            <!-- Left hand (cupping) -->
-            <path d="M -95 30
-                     Q -100 50 -90 70
-                     Q -80 85 -55 85
-                     L -50 55
-                     Q -55 45 -55 30
-                     Q -60 20 -65 5
-                     Q -75 -10 -85 -15
-                     Q -95 -20 -100 -10
-                     Q -105 0 -100 15
-                     Q -95 30 -95 30 Z"
-                  fill="url(#handGrad)"/>
-            <path d="M -85 -20 Q -95 -25 -100 -15 Q -105 -5 -98 10"
-                  stroke="#0D47A1" stroke-width="1" fill="none" opacity="0.4"/>
+            <!-- OUTER GLOW RING -->
+            <circle r="180" fill="#5BB0E8" opacity="0.10"/>
+            <circle r="140" fill="#5BB0E8" opacity="0.15"/>
+            <circle r="100" fill="#6BB6ED" opacity="0.20"/>
+            <circle r="70"  fill="#7BC0EE" opacity="0.25"/>
 
-            <!-- Right hand (cupping, mirrored) -->
-            <path d="M 95 30
-                     Q 100 50 90 70
-                     Q 80 85 55 85
-                     L 50 55
-                     Q 55 45 55 30
-                     Q 60 20 65 5
-                     Q 75 -10 85 -15
-                     Q 95 -20 100 -10
-                     Q 105 0 100 15
-                     Q 95 30 95 30 Z"
-                  fill="url(#handGrad)"/>
-            <path d="M 85 -20 Q 95 -25 100 -15 Q 105 -5 98 10"
-                  stroke="#0D47A1" stroke-width="1" fill="none" opacity="0.4"/>
+            <!-- SOFT INNER GLOW -->
+            <circle r="55" fill="#A8D8F0" opacity="0.4"/>
 
-            <!-- Shield body -->
-            <path d="M 0 -70
-                     L 45 -55
-                     L 45 -10
-                     Q 45 40 0 65
-                     Q -45 40 -45 -10
-                     L -45 -55
-                     Z"
-                  fill="url(#shieldGrad)" stroke="#0D47A1" stroke-width="2"/>
+            <!-- ===== LEFT HAND (cupping) ===== -->
+            <g>
+              <path d="M -110 20
+                       Q -125 40 -120 65
+                       Q -115 90 -95 105
+                       Q -80 115 -55 110
+                       L -50 85
+                       Q -60 78 -68 65
+                       Q -75 48 -78 30
+                       Q -82 10 -90 -8
+                       Q -100 -25 -112 -25
+                       Q -122 -25 -125 -12
+                       Q -128 2 -120 15
+                       Q -115 22 -110 20 Z"
+                    fill="url(#handGrad)"/>
+              <!-- Highlight -->
+              <path d="M -110 20 Q -120 30 -118 50 Q -115 40 -110 35 Z"
+                    fill="url(#handHi)" opacity="0.6"/>
+              <!-- Finger lines -->
+              <path d="M -100 -20 Q -108 -15 -112 0" stroke="#0D47A1"
+                    stroke-width="0.8" fill="none" opacity="0.4"/>
+              <path d="M -95 -22 Q -105 -12 -110 8" stroke="#0D47A1"
+                    stroke-width="0.8" fill="none" opacity="0.4"/>
+              <path d="M -88 -20 Q -100 -8 -106 15" stroke="#0D47A1"
+                    stroke-width="0.8" fill="none" opacity="0.4"/>
+            </g>
 
-            <!-- Shield inner highlight -->
-            <path d="M 0 -60
-                     L 36 -48
-                     L 36 -10
-                     Q 36 32 0 55
-                     Q -36 32 -36 -10
-                     L -36 -48
-                     Z"
-                  fill="none" stroke="#6BB6ED" stroke-width="1.5" opacity="0.6"/>
+            <!-- ===== RIGHT HAND (cupping, mirrored) ===== -->
+            <g>
+              <path d="M 110 20
+                       Q 125 40 120 65
+                       Q 115 90 95 105
+                       Q 80 115 55 110
+                       L 50 85
+                       Q 60 78 68 65
+                       Q 75 48 78 30
+                       Q 82 10 90 -8
+                       Q 100 -25 112 -25
+                       Q 122 -25 125 -12
+                       Q 128 2 120 15
+                       Q 115 22 110 20 Z"
+                    fill="url(#handGrad)"/>
+              <path d="M 110 20 Q 120 30 118 50 Q 115 40 110 35 Z"
+                    fill="url(#handHi)" opacity="0.6"/>
+              <path d="M 100 -20 Q 108 -15 112 0" stroke="#0D47A1"
+                    stroke-width="0.8" fill="none" opacity="0.4"/>
+              <path d="M 95 -22 Q 105 -12 110 8" stroke="#0D47A1"
+                    stroke-width="0.8" fill="none" opacity="0.4"/>
+              <path d="M 88 -20 Q 100 -8 106 15" stroke="#0D47A1"
+                    stroke-width="0.8" fill="none" opacity="0.4"/>
+            </g>
 
-            <!-- Eye white -->
-            <ellipse cx="0" cy="-15" rx="28" ry="16" fill="#FFFFFF"/>
+            <!-- ===== SHIELD ===== -->
+            <g>
+              <!-- Shield body -->
+              <path d="M 0 -85
+                       L 55 -68
+                       L 55 -15
+                       Q 55 50 0 82
+                       Q -55 50 -55 -15
+                       L -55 -68
+                       Z"
+                    fill="url(#shieldGrad)" stroke="#0D47A1" stroke-width="2.5"/>
 
-            <!-- Eye iris -->
-            <circle cx="0" cy="-15" r="12" fill="#0D47A1"/>
+              <!-- Shield inner highlight -->
+              <path d="M 0 -75
+                       L 45 -60
+                       L 45 -15
+                       Q 45 42 0 72
+                       Q -45 42 -45 -15
+                       L -45 -60
+                       Z"
+                    fill="url(#shieldHighlight)" opacity="0.4"/>
 
-            <!-- Eye pupil -->
-            <circle cx="0" cy="-15" r="6" fill="#000000"/>
+              <!-- Shield inner border (thick) -->
+              <path d="M 0 -75
+                       L 45 -60
+                       L 45 -15
+                       Q 45 42 0 72
+                       Q -45 42 -45 -15
+                       L -45 -60
+                       Z"
+                    fill="none" stroke="#6BB6ED" stroke-width="1.5" opacity="0.7"/>
 
-            <!-- Eye glint -->
-            <circle cx="-4" cy="-20" r="3" fill="#FFFFFF"/>
+              <!-- Inner white eye -->
+              <ellipse cx="0" cy="-20" rx="38" ry="22" fill="#FFFFFF"/>
 
-            <!-- Curved brow / eyebrow line -->
-            <path d="M -32 -25 Q 0 -38 32 -25"
-                  stroke="#0D47A1" stroke-width="2" fill="none" opacity="0.5"/>
+              <!-- Eye iris (deep blue) -->
+              <circle cx="0" cy="-20" r="16" fill="#0D47A1"/>
+
+              <!-- Eye iris inner ring -->
+              <circle cx="0" cy="-20" r="12" fill="none" stroke="#1E88E5" stroke-width="1" opacity="0.8"/>
+
+              <!-- Eye pupil -->
+              <circle cx="0" cy="-20" r="7" fill="#000000"/>
+
+              <!-- Pupil glint -->
+              <circle cx="-3" cy="-24" r="2.5" fill="#FFFFFF"/>
+              <circle cx="3" cy="-17" r="1" fill="#FFFFFF" opacity="0.7"/>
+
+              <!-- Eyebrow / curve -->
+              <path d="M -42 -35 Q 0 -52 42 -35"
+                    stroke="#0D47A1" stroke-width="2.5" fill="none"
+                    stroke-linecap="round" opacity="0.6"/>
+
+              <!-- Shield edge highlights (left/right) -->
+              <path d="M -55 -68 L -55 -15 Q -55 50 0 82"
+                    stroke="#0D47A1" stroke-width="1" fill="none" opacity="0.4"/>
+              <path d="M 55 -68 L 55 -15 Q 55 50 0 82"
+                    stroke="#0D47A1" stroke-width="1" fill="none" opacity="0.4"/>
+            </g>
+
+            <!-- SHINE / GLINT on shield -->
+            <ellipse cx="-18" cy="-60" rx="8" ry="12"
+                     fill="#FFFFFF" opacity="0.35"
+                     transform="rotate(-25 -18 -60)"/>
+
           </g>
 
         </svg>
+        <!-- ============================================================
+             END OF DETAILED SVG
+             ============================================================ -->
+
       </div>
 
-      <!-- Curved white wave at bottom of hero -->
+      <!-- White wave transition -->
       <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
         <path d="M 0 60 Q 360 20 720 60 T 1440 60 L 1440 120 L 0 120 Z" fill="#FFFFFF"/>
       </svg>
@@ -416,7 +988,7 @@
     </div>
   </div>
 
-  <!-- ============ LOGIN SCREEN (hidden initially) ============ -->
+  <!-- ============ LOGIN SCREEN ============ -->
   <div class="login-screen-wrap" id="loginScreen" style="display:none;">
 
     <div id="emergencyBanner" class="emergency-top-banner" style="display:none;"></div>
@@ -508,14 +1080,10 @@
   <!-- OTP Modal -->
   <div class="otp-overlay" id="otpOverlay">
     <div class="otp-modal">
-      <div class="otp-icon">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-      </div>
+      <div class="otp-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
       <h3>Verify OTP</h3>
-      <p class="otp-sub">
-        We sent a 6-digit code to<br>
-        <strong id="otpMobileText">+91-XXXXXXXXXX</strong>
-      </p>
+      <p class="otp-sub">We sent a 6-digit code to<br>
+        <strong id="otpMobileText">+91-XXXXXXXXXX</strong></p>
 
       <div class="otp-inputs" id="otpInputs">
         <input type="text" maxlength="1" inputmode="numeric" data-idx="0">
@@ -536,11 +1104,9 @@
 
       <div class="otp-actions">
         <button type="button" class="otp-btn otp-btn-ghost" id="otpCancelBtn">
-          <i class="fa-solid fa-xmark"></i> Cancel
-        </button>
+          <i class="fa-solid fa-xmark"></i> Cancel</button>
         <button type="button" class="otp-btn otp-btn-primary" id="otpVerifyBtn">
-          <i class="fa-solid fa-circle-check"></i> Verify
-        </button>
+          <i class="fa-solid fa-circle-check"></i> Verify</button>
       </div>
 
       <p class="otp-foot">
