@@ -1,6 +1,5 @@
 /* ============================================
-   SURAKSHA SETU — Splash / Landing Screen
-   Exact match to poster design
+   SURAKSHA SETU — Splash Screen CSS
    ============================================ */
 
 .splash-body {
@@ -10,15 +9,15 @@
   min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Main splash screen ---------- */
+/* ---------- Splash screen ---------- */
 .splash-screen {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  position: relative;
   background: #FFFFFF;
   animation: splashFadeIn 0.6s ease;
 }
@@ -28,7 +27,7 @@
   to   { opacity: 1; }
 }
 
-/* ---------- Emergency banner on splash ---------- */
+/* ---------- Emergency banner ---------- */
 .splash-emergency {
   background: linear-gradient(135deg, #b91c1c, #7f1d1d);
   color: #fff;
@@ -41,23 +40,12 @@
   z-index: 10;
   position: relative;
 }
-.splash-emergency i {
-  font-size: 1.5rem;
-  color: #fecaca;
-  flex-shrink: 0;
-}
+.splash-emergency i { font-size: 1.5rem; color: #fecaca; flex-shrink: 0; }
 .splash-emergency .sp-emg-body { flex: 1; min-width: 0; }
 .splash-emergency .sp-emg-title {
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  font-weight: 800; font-size: 0.9rem; letter-spacing: 0.5px; text-transform: uppercase;
 }
-.splash-emergency .sp-emg-text {
-  font-size: 0.82rem;
-  color: #fecaca;
-  margin-top: 2px;
-}
+.splash-emergency .sp-emg-text { font-size: 0.82rem; color: #fecaca; margin-top: 2px; }
 
 /* ---------- HERO ---------- */
 .splash-hero {
@@ -66,9 +54,9 @@
   background: linear-gradient(180deg, #B4DCF5 0%, #E8F4FC 100%);
   overflow: hidden;
   flex-shrink: 0;
+  line-height: 0;
 }
 
-/* If hero.jpg exists, it takes over */
 .splash-hero-img {
   width: 100%;
   height: auto;
@@ -78,23 +66,19 @@
   object-position: center;
 }
 
-/* The SVG illustration */
 .splash-hero-art {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+  display: block;
+  line-height: 0;
 }
 
 .hero-svg {
   width: 100%;
-  max-width: 720px;
   height: auto;
   display: block;
+  max-height: 62vh;
 }
 
-/* Curved wave transition */
 .wave-divider {
   position: absolute;
   bottom: -2px;
@@ -104,11 +88,12 @@
   display: block;
   pointer-events: none;
   z-index: 2;
+  line-height: 0;
 }
 
 /* ---------- SPLASH CONTENT ---------- */
 .splash-content {
-  padding: 0 24px 50px;
+  padding: 10px 24px 50px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -196,9 +181,7 @@
     transparent 100%);
   transition: left 0.6s ease;
 }
-.splash-get-started:hover::before {
-  left: 100%;
-}
+.splash-get-started:hover::before { left: 100%; }
 
 .splash-get-started:hover {
   transform: translateY(-3px);
@@ -217,61 +200,41 @@
 }
 
 .splash-get-started span {
-  position: relative;
-  z-index: 1;
-  letter-spacing: 0.5px;
+  position: relative; z-index: 1; letter-spacing: 0.5px;
 }
-
 .splash-get-started i {
-  font-size: 1.05rem;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
+  font-size: 1.05rem; transition: transform 0.3s ease;
+  position: relative; z-index: 1;
 }
+.splash-get-started:hover i { transform: translateX(6px); }
 
-.splash-get-started:hover i {
-  transform: translateX(6px);
-}
-
-/* ============================================
-   Login screen wrapper
-   ============================================ */
+/* ---------- Login screen wrapper ---------- */
 .login-screen-wrap {
   display: none;
   animation: loginFadeIn 0.4s ease;
 }
-
 @keyframes loginFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .back-to-splash {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 6px;
-  margin-bottom: 14px;
-  transition: all 0.2s;
-  font-family: inherit;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: none;
+  color: var(--text-muted, #64748b);
+  font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; padding: 6px 10px;
+  border-radius: 6px; margin-bottom: 14px;
+  transition: all 0.2s; font-family: inherit;
 }
 .back-to-splash:hover {
-  background: var(--bg);
-  color: var(--primary);
+  background: #f1f5f9;
+  color: #1e3a8a;
   transform: translateX(-3px);
 }
 .back-to-splash i { font-size: 0.8rem; }
 
-/* ============================================
-   Splash fade-out animation
-   ============================================ */
+/* ---------- Splash fade-out ---------- */
 .splash-screen.hide-anim {
   animation: splashFadeOut 0.35s ease forwards;
 }
@@ -280,77 +243,55 @@
   to   { opacity: 0; transform: translateY(-20px); }
 }
 
-/* ============================================
-   Responsive — Mobile / Tablet
-   ============================================ */
-
-/* Tablet */
+/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .splash-hero-img { max-height: 55vh; }
-  .hero-svg { max-width: 640px; }
+  .hero-svg { max-height: 55vh; }
   .wave-divider { height: 55px; }
-  .splash-title { margin-bottom: 6px; }
   .splash-tagline { margin-bottom: 34px; letter-spacing: 2px; }
   .splash-get-started { padding: 16px 52px; font-size: 1.08rem; }
 }
 
-/* Mobile large */
 @media (max-width: 640px) {
   .splash-hero-img { max-height: 48vh; }
-  .hero-svg { max-width: 520px; }
+  .hero-svg { max-height: 48vh; }
   .wave-divider { height: 45px; }
 
-  .splash-content { padding: 0 20px 40px; }
+  .splash-content { padding: 8px 20px 40px; }
   .splash-title { letter-spacing: -1px; margin-bottom: 6px; }
-  .splash-tagline {
-    gap: 10px;
-    letter-spacing: 1.5px;
-    margin-bottom: 30px;
-  }
+  .splash-tagline { gap: 10px; letter-spacing: 1.5px; margin-bottom: 30px; }
   .tagline-divider { font-size: 1em; }
 
-  .splash-get-started {
-    padding: 16px 46px;
-    font-size: 1.05rem;
-    gap: 12px;
-  }
+  .splash-get-started { padding: 16px 46px; font-size: 1.05rem; gap: 12px; }
 }
 
-/* Mobile small */
 @media (max-width: 420px) {
   .splash-hero-img { max-height: 42vh; }
-  .hero-svg { max-width: 440px; }
+  .hero-svg { max-height: 42vh; }
   .wave-divider { height: 38px; }
 
-  .splash-content { padding: 0 18px 34px; }
+  .splash-content { padding: 8px 18px 34px; }
   .splash-title { letter-spacing: -0.8px; }
   .splash-tagline {
-    gap: 8px;
-    letter-spacing: 1.2px;
-    margin-bottom: 26px;
-    font-size: 0.88rem;
+    gap: 8px; letter-spacing: 1.2px;
+    margin-bottom: 26px; font-size: 0.88rem;
   }
 
   .splash-get-started {
-    padding: 15px 42px;
-    font-size: 1rem;
-    gap: 10px;
-    width: 100%;
-    max-width: 300px;
+    padding: 15px 42px; font-size: 1rem; gap: 10px;
+    width: 100%; max-width: 300px;
   }
 }
 
-/* Very small screens */
 @media (max-width: 340px) {
   .splash-title { font-size: 2.2rem; }
   .splash-tagline { font-size: 0.78rem; letter-spacing: 1px; }
   .splash-get-started { padding: 13px 36px; font-size: 0.92rem; }
 }
 
-/* Landscape phones — shrink hero so content stays visible */
 @media (max-height: 600px) and (orientation: landscape) {
   .splash-hero-img { max-height: 55vh; }
-  .hero-svg { max-width: 480px; }
+  .hero-svg { max-height: 55vh; }
   .splash-content { padding: 10px 24px 24px; }
   .splash-tagline { margin-bottom: 20px; }
 }
