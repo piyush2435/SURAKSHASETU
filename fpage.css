@@ -1,5 +1,6 @@
 /* ============================================
    SURAKSHA SETU — Splash / Landing Screen
+   Exact match to poster design
    ============================================ */
 
 .splash-body {
@@ -8,16 +9,17 @@
   background: #FFFFFF;
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
-/* ---------- Main splash container ---------- */
+/* ---------- Main splash screen ---------- */
 .splash-screen {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
   position: relative;
+  background: #FFFFFF;
   animation: splashFadeIn 0.6s ease;
 }
 
@@ -36,11 +38,8 @@
   gap: 12px;
   box-shadow: 0 4px 20px rgba(185,28,28,0.4);
   border-bottom: 3px solid #fca5a5;
-  animation: emgPulse 2s infinite;
-}
-@keyframes emgPulse {
-  0%, 100% { background: linear-gradient(135deg, #b91c1c, #7f1d1d); }
-  50%      { background: linear-gradient(135deg, #dc2626, #991b1b); }
+  z-index: 10;
+  position: relative;
 }
 .splash-emergency i {
   font-size: 1.5rem;
@@ -60,196 +59,178 @@
   margin-top: 2px;
 }
 
-/* ---------- Hero illustration ---------- */
+/* ---------- HERO ---------- */
 .splash-hero {
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, #DBEAFE 0%, #FFFFFF 100%);
+  background: linear-gradient(180deg, #B4DCF5 0%, #E8F4FC 100%);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
+/* If hero.jpg exists, it takes over */
 .splash-hero-img {
   width: 100%;
   height: auto;
   display: block;
-  max-height: 65vh;
+  max-height: 62vh;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
 }
 
-.splash-hero-fallback {
+/* The SVG illustration */
+.splash-hero-art {
   width: 100%;
-  min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  padding: 0;
 }
 
 .hero-svg {
   width: 100%;
-  max-width: 460px;
+  max-width: 720px;
   height: auto;
-  filter: drop-shadow(0 20px 40px rgba(30,58,138,0.2));
+  display: block;
 }
 
-/* ---------- Wave divider ---------- */
+/* Curved wave transition */
 .wave-divider {
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 70px;
   display: block;
   pointer-events: none;
+  z-index: 2;
 }
 
-/* ---------- Splash content (title + button) ---------- */
+/* ---------- SPLASH CONTENT ---------- */
 .splash-content {
-  padding: 8px 24px 40px;
+  padding: 0 24px 50px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
   justify-content: center;
+  background: #FFFFFF;
+  position: relative;
+  z-index: 3;
 }
 
+/* Title */
 .splash-title {
-  font-size: clamp(2.2rem, 8vw, 3.5rem);
+  font-size: clamp(2.8rem, 9vw, 4.5rem);
   font-weight: 900;
-  letter-spacing: -0.5px;
-  color: #0F172A;
-  margin: 0 0 12px;
-  line-height: 1.05;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: -1.5px;
+  color: #0A2540;
+  margin: 0 0 8px;
+  line-height: 1;
+  font-family: 'Poppins', sans-serif;
 }
 
 .title-accent {
-  color: #1E40AF;
+  color: #1E5FD9;
   font-style: italic;
   font-weight: 900;
+  font-family: 'Playfair Display', 'Poppins', serif;
+  letter-spacing: -1px;
 }
 
+/* Tagline */
 .splash-tagline {
-  font-size: clamp(0.9rem, 3vw, 1.15rem);
-  color: #1E40AF;
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+  color: #1E5FD9;
   font-weight: 600;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
+  letter-spacing: 3px;
+  margin: 0 0 40px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: 'Poppins', sans-serif;
 }
 
 .tagline-divider {
   color: #94A3B8;
-  font-weight: 400;
+  font-weight: 300;
+  font-size: 1.2em;
 }
 
-.splash-desc {
-  font-size: 0.92rem;
-  color: #64748B;
-  max-width: 460px;
-  margin: 0 auto 32px;
-  line-height: 1.55;
-}
-
-/* ---------- Get Started button ---------- */
+/* Get Started button */
 .splash-get-started {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 16px 52px;
-  background: linear-gradient(135deg, #1E40AF, #1E3A8A);
+  gap: 14px;
+  padding: 18px 60px;
+  background: linear-gradient(135deg, #1E5FD9 0%, #1848A8 100%);
   color: #fff;
   border: none;
   border-radius: 999px;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   cursor: pointer;
-  box-shadow: 0 12px 32px rgba(30,64,175,0.35);
-  transition: all 0.25s ease;
-  margin-bottom: 34px;
+  box-shadow:
+    0 14px 32px rgba(30,95,217,0.35),
+    0 4px 8px rgba(30,95,217,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Poppins', inherit;
   position: relative;
   overflow: hidden;
-  font-family: inherit;
 }
 
 .splash-get-started::before {
   content: '';
   position: absolute;
-  top: 50%; left: 50%;
-  width: 0; height: 0;
-  background: rgba(255,255,255,0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.25) 50%,
+    transparent 100%);
+  transition: left 0.6s ease;
 }
 .splash-get-started:hover::before {
-  width: 400px;
-  height: 400px;
+  left: 100%;
 }
 
 .splash-get-started:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(30,64,175,0.5);
+  box-shadow:
+    0 20px 40px rgba(30,95,217,0.45),
+    0 6px 12px rgba(30,95,217,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+  background: linear-gradient(135deg, #2568E0 0%, #1E52B8 100%);
 }
+
 .splash-get-started:active {
   transform: translateY(-1px);
+  box-shadow:
+    0 8px 20px rgba(30,95,217,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.15);
 }
+
+.splash-get-started span {
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
 .splash-get-started i {
-  transition: transform 0.25s ease;
+  font-size: 1.05rem;
+  transition: transform 0.3s ease;
   position: relative;
   z-index: 1;
 }
+
 .splash-get-started:hover i {
-  transform: translateX(5px);
-}
-.splash-get-started span,
-.splash-get-started {
-  position: relative;
-  z-index: 1;
-}
-
-/* ---------- Feature pills ---------- */
-.splash-footer {
-  margin-top: auto;
-  padding-top: 20px;
-  width: 100%;
-  max-width: 560px;
-}
-
-.splash-features {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.splash-feature {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  background: rgba(30,64,175,0.06);
-  border: 1px solid rgba(30,64,175,0.15);
-  border-radius: 999px;
-  font-size: 0.82rem;
-  color: #1E40AF;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-.splash-feature:hover {
-  background: rgba(30,64,175,0.12);
-  transform: translateY(-2px);
-}
-.splash-feature i {
-  font-size: 0.85rem;
+  transform: translateX(6px);
 }
 
 /* ============================================
@@ -286,63 +267,90 @@
   color: var(--primary);
   transform: translateX(-3px);
 }
-.back-to-splash i {
-  font-size: 0.8rem;
-}
+.back-to-splash i { font-size: 0.8rem; }
 
 /* ============================================
-   Responsive
+   Splash fade-out animation
    ============================================ */
-
-@media (max-width: 900px) {
-  .splash-hero-img { max-height: 55vh; }
-  .splash-hero-fallback { min-height: 320px; }
-  .hero-svg { max-width: 380px; }
-}
-
-@media (max-width: 640px) {
-  .splash-hero-img { max-height: 45vh; }
-  .splash-hero-fallback { min-height: 260px; padding: 10px 0; }
-  .hero-svg { max-width: 300px; }
-
-  .splash-content { padding: 6px 20px 30px; }
-  .splash-title { margin-bottom: 8px; }
-  .splash-tagline { gap: 8px; letter-spacing: 1.5px; margin-bottom: 8px; }
-  .splash-desc { margin-bottom: 24px; font-size: 0.85rem; }
-
-  .splash-get-started {
-    padding: 14px 40px;
-    font-size: 1rem;
-    margin-bottom: 24px;
-  }
-
-  .splash-feature {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-
-  .wave-divider { height: 40px; }
-
-  .splash-emergency { padding: 10px 14px; gap: 8px; }
-  .splash-emergency i { font-size: 1.2rem; }
-  .splash-emergency .sp-emg-title { font-size: 0.82rem; }
-  .splash-emergency .sp-emg-text { font-size: 0.75rem; }
-}
-
-@media (max-width: 380px) {
-  .splash-hero-img { max-height: 38vh; }
-  .splash-hero-fallback { min-height: 200px; }
-  .hero-svg { max-width: 240px; }
-
-  .splash-get-started { padding: 12px 32px; font-size: 0.95rem; }
-  .splash-feature { padding: 5px 10px; font-size: 0.7rem; }
-}
-
-/* Smooth transition between screens */
 .splash-screen.hide-anim {
   animation: splashFadeOut 0.35s ease forwards;
 }
 @keyframes splashFadeOut {
   from { opacity: 1; transform: translateY(0); }
   to   { opacity: 0; transform: translateY(-20px); }
+}
+
+/* ============================================
+   Responsive — Mobile / Tablet
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .splash-hero-img { max-height: 55vh; }
+  .hero-svg { max-width: 640px; }
+  .wave-divider { height: 55px; }
+  .splash-title { margin-bottom: 6px; }
+  .splash-tagline { margin-bottom: 34px; letter-spacing: 2px; }
+  .splash-get-started { padding: 16px 52px; font-size: 1.08rem; }
+}
+
+/* Mobile large */
+@media (max-width: 640px) {
+  .splash-hero-img { max-height: 48vh; }
+  .hero-svg { max-width: 520px; }
+  .wave-divider { height: 45px; }
+
+  .splash-content { padding: 0 20px 40px; }
+  .splash-title { letter-spacing: -1px; margin-bottom: 6px; }
+  .splash-tagline {
+    gap: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+  }
+  .tagline-divider { font-size: 1em; }
+
+  .splash-get-started {
+    padding: 16px 46px;
+    font-size: 1.05rem;
+    gap: 12px;
+  }
+}
+
+/* Mobile small */
+@media (max-width: 420px) {
+  .splash-hero-img { max-height: 42vh; }
+  .hero-svg { max-width: 440px; }
+  .wave-divider { height: 38px; }
+
+  .splash-content { padding: 0 18px 34px; }
+  .splash-title { letter-spacing: -0.8px; }
+  .splash-tagline {
+    gap: 8px;
+    letter-spacing: 1.2px;
+    margin-bottom: 26px;
+    font-size: 0.88rem;
+  }
+
+  .splash-get-started {
+    padding: 15px 42px;
+    font-size: 1rem;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 340px) {
+  .splash-title { font-size: 2.2rem; }
+  .splash-tagline { font-size: 0.78rem; letter-spacing: 1px; }
+  .splash-get-started { padding: 13px 36px; font-size: 0.92rem; }
+}
+
+/* Landscape phones — shrink hero so content stays visible */
+@media (max-height: 600px) and (orientation: landscape) {
+  .splash-hero-img { max-height: 55vh; }
+  .hero-svg { max-width: 480px; }
+  .splash-content { padding: 10px 24px 24px; }
+  .splash-tagline { margin-bottom: 20px; }
 }
